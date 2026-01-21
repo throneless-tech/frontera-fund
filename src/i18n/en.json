@@ -1,0 +1,21 @@
+{
+  "common": {
+    "viewDetails": "View Details",
+    "learnMoreAbout": "Learn more about",
+    "paginationPrevious": "Previous",
+    "paginationNext": "Next",
+    "paginationPortfolioPrev": "Previous Portfolio",
+    "paginationPortfolioNext": "Next Portfolio"
+  },
+  "headerOffcanvas": {
+    "description": "Need help now? Reach out to us 24/7 via call or text:<br /> <br />(956) 887-0706 ",
+    "buttonLabel": "Let’s Talk With Us"
+  },
+  "navigation": {
+    "buttonLabel": "Quick Exit"
+  },
+  "footer": {
+    "copyright": "Copyright © {{ year }} Frontera Fund / Built by [Throneless Tech](https://throneless.tech/)",
+    "_comment": "TKTKTKTK"
+  }
+}

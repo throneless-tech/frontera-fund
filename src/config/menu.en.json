@@ -1,0 +1,29 @@
+{
+  "headerPrimary": [
+    {
+      "enable": true,
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "enable": true,
+      "name": "About Us",
+      "url": "/#services"
+    },
+    {
+      "enable": true,
+      "name": "Blog",
+      "url": "/#projects"
+    },
+    {
+      "enable": true,
+      "name": "Contact",
+      "url": "/#pricing"
+    },
+    {
+      "enable": true,
+      "name": "Donate",
+      "url": "/#pricing"
+    }
+  ]
+}
