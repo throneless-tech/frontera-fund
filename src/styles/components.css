@@ -365,8 +365,4 @@ footer {
   background: hsla(39, 82%, 93%, 1);
 
   background: radial-gradient(circle at top, hsla(39, 82%, 93%, 1) 30%, hsla(192, 79%, 61%, 1) 44%, hsla(248, 100%, 78%, 1) 60%, hsla(40, 100%, 60%, 1) 80%, hsla(356, 76%, 28%, 1) 92%);
-
-  background: -moz-radial-gradient(circle at top, hsla(39, 82%, 93%, 1) 30%, hsla(192, 79%, 61%, 1) 44%, hsla(248, 100%, 78%, 1) 60%, hsla(40, 100%, 60%, 1) 80%, hsla(356, 76%, 28%, 1) 92%);
-
-  background: -webkit-radial-gradient(circle at top, hsla(39, 82%, 93%, 1) 30%, hsla(192, 79%, 61%, 1) 44%, hsla(248, 100%, 78%, 1) 60%, hsla(40, 100%, 60%, 1) 80%, hsla(356, 76%, 28%, 1) 92%);
 }

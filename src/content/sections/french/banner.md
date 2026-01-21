@@ -5,7 +5,7 @@ enable: true # Contrôle la visibilité de cette section sur toutes les pages o�
 titleSize: "display-2" # Si votre titre est plus grand, utilisez une taille de texte plus petite comme "display-3", "display-2" ou "display-1"
 title: "Nous Aidons à Grandir Votre Entreprise"
 
-image: "/images/banner/startup.png"
+image: "/images/banner/women.png"
 description: "Nous sommes une agence digitale qui aide les entreprises à créer des expériences utilisateur immersives et engageantes pour stimuler leur croissance"
 
 button:
