@@ -364,5 +364,14 @@ footer {
   /* background: radial-gradient(circle at top, #fcf2e0 44%, #4fccea 60%, #9e8eff 79%, #7c1119 93%); */
   background: hsla(39, 82%, 93%, 1);
 
-  background: radial-gradient(circle at top, hsla(39, 82%, 93%, 1) 30%, hsla(192, 79%, 61%, 1) 44%, hsla(248, 100%, 78%, 1) 60%, hsla(40, 100%, 60%, 1) 80%, hsla(356, 76%, 28%, 1) 92%);
+  background: radial-gradient(circle at top, hsla(39, 82%, 93%, 1) 50%, hsla(356, 76%, 28%, 1) 60%, hsla(192, 79%, 61%, 1) 70%, hsla(248, 100%, 78%, 1) 78%, hsla(40, 100%, 60%, 1) 86%, hsla(356, 76%, 28%, 1) 92%, hsla(356, 76%, 28%, 1) 100%);
+}
+
+/* Sections */
+
+#services {
+background: hsla(39, 82%, 93%, 1);
+
+background: linear-gradient(0deg, hsla(39, 82%, 93%, 1) 95%, hsla(356, 76%, 28%, 1) 100%);
+
 }

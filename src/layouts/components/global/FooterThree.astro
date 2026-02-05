@@ -34,7 +34,37 @@ const copyrightParts = splitProtectedText(copyrightText);
 
 <footer
   id="footer-with-contact"
-  class:list={["bg-accent", !footerSpaceTop && "mt-0"]}>
+  class:list={["bg-light pt-10", !footerSpaceTop && "mt-0"]}>
+  <div class="container pb-8 md:pb-16 grid grid-cols-1 lg:grid-cols-3">
+    <div>
+      <ul>
+        <li>
+          <a class="font-secondary" href="#FIXME">About us</a>
+        </li>
+        <li>
+          <a class="font-secondary" href="#FIXME">Blog</a>
+        </li>
+        <li>
+          <a class="font-secondary" href="#FIXME">Contact</a>
+        </li>
+        <li>
+          <a class="font-secondary" href="#FIXME">Donate</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+
+    </div>
+    <div>
+      <SocialComponent
+            size="lg"
+            layout="dark"
+            class="gap-5"
+            linkType="follow"
+            list={social.main.filter((s) => s.enable)}
+          />
+    </div>
+  </div>
   <!-- <div class="container pb-8 md:pb-16">
     <div
       class="grid grid-cols-1 gap-y-10 border-b-2 border-black py-16 md:py-24 lg:grid-cols-2 lg:gap-x-20 xl:gap-x-10">

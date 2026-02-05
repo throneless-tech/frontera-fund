@@ -96,7 +96,7 @@ export const inputFieldSchema = z.object({
 // SECTIONS SCHEMA
 // ================================================================================
 
-export const pricingSectionSchema = z
+export const CTASectionSchema = z
   .object({
     enable: z.boolean().default(false),
     title: z.string().optional(),
@@ -112,6 +112,8 @@ export const pricingSectionSchema = z
         }),
         features: z.array(z.string()),
         button,
+        alt: z.string(),
+        image: z.string(),
       }),
     ),
   })
@@ -187,5 +189,5 @@ export const sectionsSchema = {
   servicesSection: servicesSectionSchema,
   clientsSection: clientsSectionSchema,
   bannerAgencySection: bannerAgencySectionSchema,
-  pricingSection: pricingSectionSchema,
+  CTASection: CTASectionSchema,
 };

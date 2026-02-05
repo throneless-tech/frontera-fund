@@ -9,7 +9,7 @@ interface Props {
   prevBtnText?: string;
   collection?: string;
   nextBtnText?: string;
-  currentPage?: CollectionEntry<"portfolio">;
+  currentPage?: CollectionEntry<"blog">;
   class?: string;
 }
 
@@ -26,7 +26,7 @@ let {
 let pages;
 if (collection) {
   pages = await getCollectionCTM(
-    collection as "portfolio",
+    collection as "blog",
     Astro.currentLocale,
   );
 }

@@ -5,7 +5,7 @@ enable: true # Control the visibility of this section across all pages where it 
 titleSize: "display-2" # If your title text is larger, use a smaller text size like "display-3", "display-2", or "display-1".
 title: "Financial support and a sense of community "
 
-image: "/images/banner/women.png"
+image: "/images/banner/abortion_forever_group.png"
 description: "<p>for those seeking reproductive healthcare in the Rio Grande Valley and Texas border community.<br /><br /></p><p>Call the helpline 24/7: (956) 887-0706</p>"
 
 button:

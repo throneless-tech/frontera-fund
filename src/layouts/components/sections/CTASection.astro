@@ -3,20 +3,20 @@ import type { z } from "astro/zod";
 import { getEntryCTM } from "@/lib/customContentLoader.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import overrideObjects from "@/lib/utils/overrideObjects.ts";
-import type { pricingSectionSchema } from "@/sections.schema";
-import PricingCard from "@/layouts/components/cards/PricingCard.astro";
+import type { CTASectionSchema } from "@/sections.schema";
+import CTACard from "@/layouts/components/cards/CTACard.astro";
 
 // Type for this section data
-type pricingSectionSchema = NonNullable<z.infer<typeof pricingSectionSchema>>;
+type CTASectionSchema = NonNullable<z.infer<typeof CTASectionSchema>>;
 
 type Props = {
-  content?: pricingSectionSchema;
+  content?: CTASectionSchema;
 };
 
 // Fetching the default content for the this section
 let defaultContent = (
-  await getEntryCTM("sections", "pricing-section", Astro.currentLocale)
-)?.data as pricingSectionSchema;
+  await getEntryCTM("sections", "CTA-section", Astro.currentLocale)
+)?.data as CTASectionSchema;
 
 // Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
 // The 'content' prop should match the structure of 'defaultContent'.
@@ -25,7 +25,7 @@ let defaultContent = (
 let actualContent = overrideObjects(
   { ...defaultContent },
   Astro.props.content,
-) as pricingSectionSchema;
+) as CTASectionSchema;
 
 // Extracting required values from 'content' object
 let { enable = true, title, list } = actualContent || {};
@@ -35,7 +35,7 @@ if (!enable) {
 }
 ---
 
-<section id="pricing">
+<section id="CTA">
   <div class="container space-y-14">
     {
       title && (
@@ -45,8 +45,8 @@ if (!enable) {
       )
     }
 
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {list.map((item) => <PricingCard content={item} />)}
+    <div class="container">
+      {list.map((item) => <CTACard content={item} />)}
     </div>
   </div>
 </section>

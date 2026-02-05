@@ -1,6 +1,6 @@
 ---
 import type { Section } from "@/types";
-import PortfolioCard from "@/components/cards/PortfolioCard.astro";
+import BlogCard from "@/components/cards/BlogCard.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import overrideObjects from "@/lib/utils/overrideObjects.ts";
 import { useTranslations } from "@/lib/utils/i18nUtils";
@@ -9,18 +9,23 @@ import { parseTomlToJson } from "@/lib/utils/tomlUtils";
 import type { CollectionEntry } from "astro:content";
 
 // Type for this section data
-export type PortfolioInterface = Section & {
-  options?: CollectionEntry<"portfolio">["data"]["options"];
+export type BlogInterface = Section & {
+  options?: CollectionEntry<"blog">["data"]["options"];
 };
 
 type Props = {
-  content?: PortfolioInterface;
+  content?: BlogInterface;
 };
 
 // Fetching the default content for the this section
 let defaultContent = (
   await getEntryCTM("sections", "portfolio-section", Astro.currentLocale)
-)?.data as PortfolioInterface;
+)?.data as BlogInterface;
+
+console.log('***********************');
+
+console.log(defaultContent);
+
 
 // Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
 // The 'content' prop should match the structure of 'defaultContent'.
@@ -29,18 +34,18 @@ let defaultContent = (
 let actualContent = overrideObjects(
   { ...defaultContent },
   Astro.props.content,
-) as PortfolioInterface;
+) as BlogInterface;
 
 const config = parseTomlToJson();
 const t = await useTranslations(Astro.currentLocale as string);
 
 // Extracting required values from 'content' object
-let { enable = true, title, options } = actualContent as PortfolioInterface;
+let { enable = true, title, options } = actualContent as BlogInterface;
 
 const { layout, appearance, limit } = options || {};
 
 let projects = await getCollectionCTM(
-  config.settings.portfolioFolder as "portfolio",
+  config.settings.blogFolder as "blog",
   Astro.currentLocale,
 );
 
@@ -57,6 +62,7 @@ if (!enable) {
 <section id="projects">
   <div
     class:list={[
+      "bg-body py-12 md:py-24",
       isDarkAppearance && "bg-theme-darker py-20 md:py-32",
       layout === "slider" && "overflow-hidden",
     ]}>
@@ -80,7 +86,7 @@ if (!enable) {
               layout === "grid" && "space-y-10",
             ]}>
             {projects.map((item, index) => (
-              <PortfolioCard
+              <BlogCard
                 class:list={["space-y-4 overflow-hidden"]}
                 options={options}
                 translations={t}
@@ -91,12 +97,12 @@ if (!enable) {
           </div>
         ) : layout === "slider" ? (
           <div class="py-8 text-center text-sm text-gray-400 italic">
-            Portfolio "Slider" layout is only available in the Pro version.
+            Blog "Slider" layout is only available in the Pro version.
             Purchase Folex premium version to unlock this layout.
           </div>
         ) : layout === "full-width" ? (
           <div class="py-8 text-center text-sm text-gray-400 italic">
-            Portfolio "full-width" layout is only available in the Pro version.
+            Blog "full-width" layout is only available in the Pro version.
             Purchase Folex premium version to unlock this layout.
           </div>
         ) : null

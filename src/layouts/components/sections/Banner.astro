@@ -44,7 +44,7 @@ const fontSizeMap: Record<NonNullable<typeof titleSize>, string> = {
 const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
 ---
 
-<section class="bg-gradient mb-24 bg-light pt-52 md:mb-32">
+<section class="bg-gradient mb-20 bg-light pt-30 sm:pt-40 md:pt-52 md:mb-32">
   <div class="container">
     <div class="mx-auto max-w-7xl space-y-7 text-center md:space-y-10">
       {
@@ -55,7 +55,7 @@ const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
             class:list={[
               "text-inherit",
               // fontSize,
-              "text-6xl",
+              "text-4xl md:text-5xl",
               "block leading-tight font-bold break-words text-inherit",
             ]}
             set:html={markdownify(title)}
@@ -68,10 +68,10 @@ const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
             data-aos="reveal-anim-top"
             data-aos-duration="1500"
             data-aos-delay="200"
-            class="mx-auto max-w-xl space-y-6">
+            class="mx-auto max-w-xl space-y-4">
             {description && (
               <p
-                class="text-2xl text-inherit opacity-80"
+                class="text-lg md:text-2xl text-inherit opacity-80"
                 set:html={markdownify(description)}
               />
             )}
@@ -85,7 +85,7 @@ const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
           </div>
         ) : (
           description && (
-            <div class="mx-auto max-w-xl text-2xl text-inherit">
+            <div class="mx-auto max-w-xl text-lg md:text-2xl text-inherit">
             <p
               data-aos="reveal-anim-top"
               data-aos-delay="200"

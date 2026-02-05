@@ -67,7 +67,7 @@ if (!enable) {
 <section id="services">
   <div
     class:list={[
-      "container",
+      "container mb-10",
       isHorizontalSection
         ? "grid grid-cols-1 items-start space-y-14 gap-x-10 lg:grid-cols-2 lg:space-y-0"
         : "space-y-14",
@@ -85,63 +85,55 @@ if (!enable) {
       )
     }
 
-    {
-      layout === "accordion" ? (
-        <div class="hs-accordion-group mx-auto w-full max-w-4xl">
-          {services.map((item, index): { item: Service; index: number } => {
-            const id = uniqueIdGenerator(item.title);
-            return (
-              <div
-                class:list={[
-                  "hs-accordion relative border-b py-6 text-start first:border-t lg:pe-20",
-                  "transition-all duration-300 lg:flex lg:flex-row lg:items-start lg:justify-between lg:gap-16",
-                  index === 0 && "active",
-                ]}
-                id={"accordion-" + id}>
-                <div
-                  class="font-secondary mt-2.5 mb-4 text-2xl font-semibold lg:mb-0 lg:text-sm"
-                  set:html={(index <= 9 ? "0" : "") + (index + 1)}
-                />
-                <button
-                  title="show or hide accordion content"
-                  class="hs-accordion-toggle absolute inset-0 size-full"
-                />
-                <button
-                  title="show or hide accordion content"
-                  aria-controls={"accordion-content-" + id}
-                  aria-expanded={index === 0 ? "true" : "false"}
-                  class="hs-accordion-toggle text-dark font-secondary text-h5 w-full pe-20 text-start font-medium lg:pe-0"
-                  set:html={item.title}
-                />
-                <div
-                  role="region"
-                  id={"accordion-content-" + id}
-                  aria-labelledby={"accordion-" + id}
-                  class:list={[
-                    "hs-accordion-content hs-accordion-active:opacity-100 w-full max-w-lg overflow-hidden opacity-0 transition-all duration-300 ease-linear",
-                    index !== 0 && "hidden",
-                  ]}>
-                  <div class="prose-styles prose-p:first:mt-0 prose-p:last:mb-0 pt-3 lg:pt-0">
-                    <div set:html={markdownify(item.description, true)} />
-                  </div>
-                </div>
-
-                <div class="hs-accordion-active:rotate-180 pointer-events-none absolute end-0 top-8 flex transition duration-300">
-                  <ReactIcons
-                    icon="RxArrowTopRight"
-                    class="text-dark text-xl"
-                  />
-                </div>
+    <div class="hs-accordion-group mx-auto w-full max-w-4xl">
+      {services.map((item, index): { item: Service; index: number } => {
+        const id = uniqueIdGenerator(item.title);
+        return (
+          <div
+            class:list={[
+              "hs-accordion relative border-b py-6 text-start first:border-t lg:pe-20",
+              "transition-all duration-300 lg:flex lg:flex-row lg:items-start lg:justify-between lg:gap-16",
+              index === 0 && "active",
+            ]}
+            id={"accordion-" + id}>
+            <div
+              class="font-secondary mt-2.5 mb-4 text-2xl font-semibold lg:mb-0 lg:text-sm"
+              set:html={(index <= 9 ? "0" : "") + (index + 1)}
+            />
+            <button
+              title="show or hide accordion content"
+              class="hs-accordion-toggle absolute inset-0 size-full"
+            />
+            <button
+              title="show or hide accordion content"
+              aria-controls={"accordion-content-" + id}
+              aria-expanded={index === 0 ? "true" : "false"}
+              class="hs-accordion-toggle text-dark font-secondary text-h5 w-full pe-20 text-start font-medium lg:pe-0"
+              set:html={item.title}
+            />
+            <div
+              role="region"
+              id={"accordion-content-" + id}
+              aria-labelledby={"accordion-" + id}
+              class:list={[
+                "hs-accordion-content hs-accordion-active:opacity-100 w-full max-w-lg overflow-hidden opacity-0 transition-all duration-300 ease-linear",
+                index !== 0 && "hidden",
+              ]}>
+              <div class="prose-styles prose-p:first:mt-0 prose-p:last:mb-0 pt-3 lg:pt-0">
+                <div set:html={markdownify(item.description, true)} />
               </div>
-            );
-          })}
-        </div>
-      ) : layout === "grid" ? (
-        <div class="py-8 text-center text-sm text-gray-400 italic">
-          "Grid Layout" is only available in the Pro version. Purchase Folex
-          premium version to unlock this layout.
-        </div>
-      ) : null
-    }
+            </div>
+
+            <div class="hs-accordion-active:rotate-180 pointer-events-none absolute end-0 top-8 flex transition duration-300">
+              <ReactIcons
+                icon="RxArrowTopRight"
+                class="text-dark text-xl"
+              />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
   </div>
 </section>

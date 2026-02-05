@@ -3,7 +3,7 @@ enable: true # Control the visibility of this section across all pages where it 
 title: ""
 
 list:
-  - enable: true
+  - enable: false
     name: "Personal"
     description: "We care about their success. For us real relationships feel real"
     price:
@@ -25,7 +25,7 @@ list:
       # variant: "" # Optional: fill | outline | text | circle
       # rel: "" # Optional
       # target: "" # Optional
-  - enable: true
+  - enable: false
     name: "Startup"
     description: "We care about their success. For us real relationships feel real"
     price:
@@ -48,8 +48,9 @@ list:
       # rel: "" # Optional
       # target: "" # Optional
   - enable: true
-    name: "Corporate"
-    description: "We care about their success. For us real relationships feel real"
+    name: "Ready to join the fight?"
+    description: "Join our mailing list to get the latest updates on what’s happening with Frontera Fund."
+    image: "/images/cta.png"
     price:
       prependValue: "$"
       value: "180"
@@ -63,7 +64,7 @@ list:
     button:
       # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
       enable: true
-      label: "CHOOSE THIS PLAN"
+      label: "Sign up now"
       url: "/"
       # hoverEffect: "" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
       # variant: "" # Optional: fill | outline | text | circle

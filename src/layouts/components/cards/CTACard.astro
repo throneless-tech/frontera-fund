@@ -1,0 +1,76 @@
+---
+import type { z } from "astro/zod";
+import ReactIcons from "@/helpers/ReactIcons.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CTASectionSchema } from "@/sections.schema";
+import CustomButton from "../CustomButton.astro";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+
+type CTACardType = NonNullable<
+  z.infer<typeof CTASectionSchema>
+>["list"][0];
+
+type Props = {
+  content: CTACardType;
+  class?: string;
+};
+
+const {
+  class: className,
+  content: { enable, name, price, description, features, button, image, alt },
+  ...rest
+} = Astro.props;
+---
+
+{
+  enable && (
+    <div class:list={[
+        "bg-theme-light flex flex-col items-start justify-between ",
+        className,
+      ]}>
+                        {
+        image && (
+          <div
+            data-aos="reveal-anim-top"
+            data-aos-duration="1500"
+            data-aos-delay="300"
+            data-aos-offset="0"
+            class="mx-auto mb-1 mt-0 max-w-4xl">
+            <OptimizedImage
+              src={image}
+              alt={alt || ""}
+              class="w-full object-contain"
+            />
+          </div>
+        )
+      }
+      <div
+      class:list={[
+        "space-y-10 p-8 text-center",
+      ]}
+      {...rest}>
+      <div class="space-y-4">
+        <div>
+          {name && (
+            <h3
+              class="text-h5 md:text-h4 font-semibold"
+              set:html={markdownify(name)}
+            />
+          )}
+        </div>
+        {description && (
+          <p class="text-lg" set:html={markdownify(description)} />
+        )}
+      </div>
+      {button?.enable && (
+        <CustomButton
+          class="w-100 ml-auto mr-auto effect-color-accent text-center"
+          hoverEffect="creative-fill"
+          {...button}
+        />
+      )}
+    </div>
+    </div>
+    
+  )
+}

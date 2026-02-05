@@ -4,7 +4,7 @@ import { button, sectionsSchema } from "./sections.schema";
 import { glob } from "astro/loaders";
 
 const config = parseTomlToJson();
-const portfolioFolder = config.settings.portfolioFolder || "portfolio";
+const blogFolder = config.settings.blogFolder || "blog";
 const servicesFolder = config.settings.servicesFolder || "services";
 
 // Universal Page Schema
@@ -44,10 +44,10 @@ const serviceCollection = defineCollection({
   ),
 });
 
-// Portfolio Collection
-const portfolioCollection = defineCollection({
-  // Load Markdown and MDX files in the `src/content/portfolio/` directory.
-  loader: glob({ base: "./src/content/portfolio", pattern: "**/*.{md,mdx}" }),
+// Blog Collection
+const blogCollection = defineCollection({
+  // Load Markdown and MDX files in the `src/content/blog/` directory.
+  loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
   schema: page.merge(
     z.object({
       images: z.array(z.string()).min(1).optional(),
@@ -75,8 +75,8 @@ export const collections = {
   // To prevent, getEntry (Content fetching API) throws error when collection does not exist, we specify a default collection along with the schema of each required collection
   [servicesFolder]: serviceCollection,
   services: serviceCollection,
-  [portfolioFolder]: portfolioCollection,
-  portfolio: portfolioCollection,
+  [blogFolder]: blogCollection,
+  blog: blogCollection,
 
   pages: pagesCollection,
   sections: defineCollection({}),

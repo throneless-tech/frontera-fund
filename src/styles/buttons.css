@@ -43,7 +43,7 @@
     background: var(--color-theme-dark);
   }
   &.effect-color-accent .hover-bg {
-    background: var(--color-accent);
+    background: var(--color-blue);
   }
 
     &.effect-color-salmon .hover-bg {
