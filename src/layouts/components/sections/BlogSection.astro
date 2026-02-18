@@ -19,7 +19,7 @@ type Props = {
 
 // Fetching the default content for the this section
 let defaultContent = (
-  await getEntryCTM("sections", "portfolio-section", Astro.currentLocale)
+  await getEntryCTM("sections", "blog-section", Astro.currentLocale)
 )?.data as BlogInterface;
 
 console.log('***********************');

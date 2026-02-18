@@ -57,9 +57,9 @@ if (Array.isArray(information)) {
       {
         Array.isArray(images) && images.length > 1 && (
           <div
-            id="portfolio-slider"
+            id="blog-slider"
             class="swiper"
-            aria-label="Portfolio image slider">
+            aria-label="Blog image slider">
             <div class="swiper-wrapper">
               {images.map((item: string, index: number) => (
                 <div class="swiper-slide h-auto!">
@@ -73,14 +73,14 @@ if (Array.isArray(information)) {
             </div>
             {/* <!-- Left Arrow --> */}
             <button
-              class="portfolio-slider-btn-prev hover:bg-accent hover:text-dark absolute start-4 top-1/2 z-10 flex min-h-14 min-w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white transition duration-300 [--swiper-navigation-size:1.25rem]"
+              class="blog-slider-btn-prev hover:bg-accent hover:text-dark absolute start-4 top-1/2 z-10 flex min-h-14 min-w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white transition duration-300 [--swiper-navigation-size:1.25rem]"
               aria-label="Previous slide">
               <ReactIcons icon="FaArrowLeftLong" />
             </button>
 
             {/* <!-- Right Arrow --> */}
             <button
-              class="portfolio-slider-btn-next hover:bg-accent hover:text-dark absolute end-4 top-1/2 z-10 flex min-h-14 min-w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white transition duration-300 [--swiper-navigation-size:1.25rem]"
+              class="blog-slider-btn-next hover:bg-accent hover:text-dark absolute end-4 top-1/2 z-10 flex min-h-14 min-w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white transition duration-300 [--swiper-navigation-size:1.25rem]"
               aria-label="Next slide">
               <ReactIcons icon="FaArrowRightLong" />
             </button>
@@ -124,8 +124,8 @@ if (Array.isArray(information)) {
       </div>
       <div class="mt-10 flex justify-between border-t pt-10">
         <PaginationForSingle
-          prevBtnText={t("common.paginationPortfolioPrev")}
-          nextBtnText={t("common.paginationPortfolioNext")}
+          prevBtnText={t("common.paginationBlogPrev")}
+          nextBtnText={t("common.paginationBlogNext")}
           currentPage={Astro.props.content}
           collection={collection}
         />
@@ -143,17 +143,17 @@ if (Array.isArray(information)) {
         );
 
         // Initialize banner Swiper
-        const portfolioSlider = document.querySelector(
-          "#portfolio-slider",
+        const blogSlider = document.querySelector(
+          "#blog-slider",
         ) as HTMLElement;
 
-        if (portfolioSlider) {
+        if (blogSlider) {
           // Initialize content Swiper with navigation
-          new Swiper(portfolioSlider, {
+          new Swiper(blogSlider, {
             modules: [Autoplay, Pagination, Navigation],
             navigation: {
-              nextEl: ".portfolio-slider-btn-next",
-              prevEl: ".portfolio-slider-btn-prev",
+              nextEl: ".blog-slider-btn-next",
+              prevEl: ".blog-slider-btn-prev",
             },
             speed: 800,
             spaceBetween: 40,
