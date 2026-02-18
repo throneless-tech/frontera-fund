@@ -7,6 +7,7 @@ import social from "@/config/social.json";
 import { useTranslations } from "@/lib/utils/i18nUtils";
 import { getEntryCTM } from "@/lib/customContentLoader.astro";
 import ContactForm from "../widgets/ContactForm.astro";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
 
 const config = parseTomlToJson();
 const t = await useTranslations(Astro.currentLocale as string);
@@ -34,28 +35,44 @@ const copyrightParts = splitProtectedText(copyrightText);
 
 <footer
   id="footer-with-contact"
-  class:list={["bg-light pt-10", !footerSpaceTop && "mt-0"]}>
-  <div class="container pb-8 md:pb-16 grid grid-cols-1 lg:grid-cols-3">
-    <div>
+  class:list={["bg-gradient--footer bg-light mt-10 pt-10", !footerSpaceTop && "mt-30"]}>
+  <div class="container pb-8 lg:pb-16 grid grid-cols-1 lg:grid-cols-3 text-xl">
+    <div class="lg:col-span-3 text-center">
+        <OptimizedImage
+          src='/images/logo-art.png'
+          alt={title || "Frontera Fund logo."}
+          class:list={[
+            "h-80 object-contain mx-auto",
+          ]}
+        />
+    </div>
+    <div class="mt-16 lg:mt-10 text-center lg:text-left">
       <ul>
         <li>
-          <a class="font-secondary" href="#FIXME">About us</a>
+          <a class="active:underline focus:underline hover:underline" href="#FIXME">About us</a>
         </li>
         <li>
-          <a class="font-secondary" href="#FIXME">Blog</a>
+          <a class="active:underline focus:underline hover:underline" href="#FIXME">Blog</a>
         </li>
         <li>
-          <a class="font-secondary" href="#FIXME">Contact</a>
+          <a class="active:underline focus:underline hover:underline" href="#FIXME">Contact</a>
         </li>
         <li>
-          <a class="font-secondary" href="#FIXME">Donate</a>
+          <a class="active:underline focus:underline hover:underline" href="#FIXME">Donate</a>
         </li>
       </ul>
     </div>
-    <div>
-
+    <div class="mt-10 text-center lg:text-left">
+      <div>
+        Helpline:
+        <a class="active:underline focus:underline hover:underline" href="tel:+19568870706">(956) 887-0706</a>
+      </div>
+      <div class="mt-10">
+        <p>P.O. Box 721011</p>
+        <p>McAllen, TX 78504</p>
+      </div>
     </div>
-    <div>
+    <div class="flex flex-col items-center gap-10 mt-10 text-center lg:text-left">
       <SocialComponent
             size="lg"
             layout="dark"
@@ -63,16 +80,24 @@ const copyrightParts = splitProtectedText(copyrightText);
             linkType="follow"
             list={social.main.filter((s) => s.enable)}
           />
+      <div>
+        <div>
+          <a class="active:underline focus:underline hover:underline" href="/privacy-policy">Privacy policy</a>
+        </div>
+        <div>
+          <a class="active:underline focus:underline hover:underline" href="/legal-disclaimers">Legal disclaimers</a>
+        </div>
+      </div>
     </div>
   </div>
-  <!-- <div class="container pb-8 md:pb-16">
+  <!-- <div class="container pb-8 lg:pb-16">
     <div
-      class="grid grid-cols-1 gap-y-10 border-b-2 border-black py-16 md:py-24 lg:grid-cols-2 lg:gap-x-20 xl:gap-x-10">
+      class="grid grid-cols-1 gap-y-10 border-b-2 border-black py-16 lg:py-24 lg:grid-cols-2 lg:gap-x-20 xl:gap-x-10">
       <div class="space-y-10">
         {
           title && (
             <h2
-              class="text-display-6 xs:text-display-5 md:text-display-4"
+              class="text-display-6 xs:text-display-5 lg:text-display-4"
               set:html={markdownify(title)}
             />
           )
@@ -112,7 +137,7 @@ const copyrightParts = splitProtectedText(copyrightText);
     <div
       class="font-secondary flex flex-wrap items-center justify-between gap-x-8 gap-y-6 pt-6 text-sm leading-loose font-semibold uppercase">
       {address && <p set:html={markdownify(address)} />}
-      <div class="md:text-end">
+      <div class="lg:text-end">
         {phone && <p set:html={markdownify(phone)} />}
         {email && <p set:html={markdownify(email)} />}
       </div>

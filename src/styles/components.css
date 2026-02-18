@@ -287,7 +287,7 @@ header {
     }
 
     .logo-text {
-      @apply text-white;
+      @apply text-light;
     }
 
     .logo-alternate {
@@ -299,7 +299,7 @@ header {
 /* Show main logo in footer */
 footer {
   .logo-text {
-    @apply text-h5 text-white;
+    @apply text-h5 text-light;
   }
 
   .logo-alternate {
@@ -367,11 +367,29 @@ footer {
   background: radial-gradient(circle at top, hsla(39, 82%, 93%, 1) 50%, hsla(356, 76%, 28%, 1) 60%, hsla(192, 79%, 61%, 1) 70%, hsla(248, 100%, 78%, 1) 78%, hsla(40, 100%, 60%, 1) 86%, hsla(356, 76%, 28%, 1) 92%, hsla(356, 76%, 28%, 1) 100%);
 }
 
+.bg-gradient--footer {
+  /* background: radial-gradient(circle at top, #fcf2e0 38%, #4fccea 76%, #7c1119 91%); */
+  /* background: radial-gradient(circle at top, #fcf2e0 44%, #4fccea 60%, #9e8eff 79%, #7c1119 93%); */
+  background: hsla(39, 82%, 93%, 1);
+
+  background: radial-gradient(140% 100% at bottom, hsla(39, 82%, 93%, 1) 50%, hsla(356, 76%, 28%, 1) 60%, hsla(192, 79%, 61%, 1) 70%, hsla(248, 100%, 78%, 1) 78%, hsla(40, 100%, 60%, 1) 86%, hsla(356, 76%, 28%, 1) 92%, hsla(356, 76%, 28%, 1) 100%);
+}
+
 /* Sections */
 
-#services {
-background: hsla(39, 82%, 93%, 1);
+#about {
+  background: hsla(39, 82%, 93%, 1);
 
-background: linear-gradient(0deg, hsla(39, 82%, 93%, 1) 95%, hsla(356, 76%, 28%, 1) 100%);
+  background: linear-gradient(0deg, hsla(39, 82%, 93%, 1) 95%, hsla(356, 76%, 28%, 1) 100%);
+}
 
+#blog {
+  background: hsla(356, 76%, 28%, 1);
+
+  background: linear-gradient(0deg, hsla(356, 76%, 28%, 1) 0%, hsla(39, 82%, 93%, 1) 4%);
+}
+
+.prose-styles.prose-light div p {
+  @apply text-light;
+  border-color: var(--color-border-light);
 }
