@@ -22,11 +22,6 @@ let defaultContent = (
   await getEntryCTM("sections", "blog-section", Astro.currentLocale)
 )?.data as BlogInterface;
 
-console.log('***********************');
-
-console.log(defaultContent);
-
-
 // Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
 // The 'content' prop should match the structure of 'defaultContent'.
 // Allows using this section with different content across multiple pages.
@@ -59,7 +54,7 @@ if (!enable) {
 }
 ---
 
-<section id="projects">
+<section id="blog">
   <div
     class:list={[
       "bg-body py-12 md:py-24",

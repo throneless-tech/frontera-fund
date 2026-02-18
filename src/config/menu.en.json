@@ -8,22 +8,22 @@
     {
       "enable": true,
       "name": "About Us",
-      "url": "/#services"
+      "url": "/#about"
     },
     {
       "enable": true,
       "name": "Blog",
-      "url": "/#projects"
+      "url": "/#blog"
     },
     {
       "enable": true,
       "name": "Contact",
-      "url": "/#pricing"
+      "url": "/#contact"
     },
     {
       "enable": true,
       "name": "Donate",
-      "url": "/#pricing"
+      "url": "/#fixme"
     }
   ]
 }

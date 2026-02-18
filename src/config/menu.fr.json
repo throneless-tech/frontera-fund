@@ -7,23 +7,23 @@
     },
     {
       "enable": true,
-      "name": "Services",
-      "url": "/#services"
+      "name": "About",
+      "url": "/#about"
     },
     {
       "enable": true,
-      "name": "Projets",
-      "url": "/#projects"
+      "name": "Blog",
+      "url": "/#blog"
     },
     {
       "enable": true,
       "name": "Tarifs",
-      "url": "/#pricing"
+      "url": "/#contact"
     },
     {
       "enable": true,
       "name": "Etc",
-      "url": "/#pricing"
+      "url": "/#fixme"
     }
   ]
 }

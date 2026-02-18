@@ -3,7 +3,7 @@ enable: true # Contrôle la visibilité de cette section sur toutes les pages o�
 title: ""
 
 list:
-  - enable: true
+  - enable: false
     name: "Personnel"
     description: "Nous nous soucions de leur réussite. Pour nous, les relations authentiques sont vraies"
     price:
@@ -26,8 +26,9 @@ list:
       # rel: "" # Optional
       # target: "" # Optional
   - enable: true
-    name: "Startup"
+    name: "Ce Plan"
     description: "Nous nous soucions de leur réussite. Pour nous, les relations authentiques sont vraies"
+    image: "/images/cta.png"
     price:
       prependValue: "€"
       value: "180"
@@ -47,7 +48,7 @@ list:
       # variant: "" # Optional: fill | outline | text | circle
       # rel: "" # Optional
       # target: "" # Optional
-  - enable: true
+  - enable: false
     name: "Entreprise"
     description: "Nous nous soucions de leur réussite. Pour nous, les relations authentiques sont vraies"
     price:
