@@ -4,6 +4,7 @@ import formatRelativeDate from "@/lib/utils/formatRelativeDate";
 import { markdownify } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import ResourceCard from "@/components/cards/ResourceCard.astro";
 
 interface Props {
   content: CollectionEntry<"pages">;
@@ -11,7 +12,7 @@ interface Props {
 }
 
 const { content, class: className } = Astro.props;
-let { title, date, image, categories } = content.data;
+let { title, date, image, categories, resources } = content.data;
 
 // Process markdown content if function is provided
 let Content: any;
@@ -20,7 +21,7 @@ if (typeof content.render === "function") {
 }
 ---
 
-<section>
+<section class="py-8">
   <div class="container">
     <div
       class:list={["has-video-modal max-w-full space-y-10 lg:p-5", className]}>
@@ -64,6 +65,17 @@ if (typeof content.render === "function") {
           </div>
         )
       }
+      {resources && (
+        <div>
+          <ResourceCard
+            class:list={["space-y-4 overflow-hidden"]}
+            // options={options}
+            // translations={t}
+            content={'test'}
+            index={'index'}
+          />
+        </div>
+      )}
     </div>
   </div>
 </section>

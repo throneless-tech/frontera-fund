@@ -1,12 +1,12 @@
 ---
-title: "Terms & Conditions"
+title: "Legal Disclaimers"
 metaDescription: "This is a example description"
 draft: false
 ---
 
-**Effective Date:** July, 2022
+**Effective Date:** February 2026
 
-Welcome to Folex ("we," "our," or "us"). By accessing or using our website, <https://www.folex.com> ("Website"), you agree to comply with and be bound by the following Terms and Conditions ("Terms"). If you do not agree with these Terms, please do not use our Website.
+Welcome to Frontera Fund's website ("we," "our," or "us"). By accessing or using our website, <https://www.fronterafundrgv.org> ("Website"), you agree to comply with and be bound by the following Terms and Conditions ("Terms"). If you do not agree with these Terms, please do not use our Website.
 
 ### Acceptance of Terms
 
@@ -27,7 +27,7 @@ If you create an account on our Website, you are responsible for maintaining the
 
 ### Intellectual Property
 
-All content on the Website, including but not limited to text, images, logos, and software, is the property of Folex or its licensors and is protected by copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, or modify any content without prior written consent from Folex.
+All content on the Website, including but not limited to text, images, logos, and software, is the property of Frontera Fund or its licensors and is protected by copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, or modify any content without prior written consent from Frontera Fund.
 
 ### Purchases and Payments
 
@@ -39,7 +39,7 @@ The Website and its content are provided "as is" without warranties of any kind,
 
 ### Limitation of Liability
 
-To the fullest extent permitted by law, Folex shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Website or inability to access it. Our total liability for any claims related to the Website shall not exceed the amount paid by you, if any, to Folex.
+To the fullest extent permitted by law, Frontera Fund shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Website or inability to access it. Our total liability for any claims related to the Website shall not exceed the amount paid by you, if any, to Frontera Fund.
 
 ### Termination
 
@@ -61,9 +61,9 @@ We reserve the right to update or modify these Terms at any time without prior n
 
 If you have any questions or concerns about these Terms, please contact us at:
 
-Folex
+Frontera Fund
+Email: privacy@fronterafundrvg.org FIXME
 
-Email: <support@folex.com>  
-Address: 123 Folex Lane, Imaginary City, IC 12345, USA
+Address: P.O. Box 721011, McAllen, TX 78504
 
-Thank you for using Folex!
+Thank you for visiting Frontera Fund!

@@ -54,7 +54,7 @@ export async function getStaticPaths() {
 const { blog } = Astro.props;
 ---
 
-<Base {...blog.data}>
+<Base {...blog.data} hasHeaderDarkBackground={true}>
   <Breadcrumbs breadcrumbExcludedPaths={["Blog"]} />
   <BlogSingle content={blog} />
 </Base>

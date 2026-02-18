@@ -1,93 +1,78 @@
 ---
 title: "Privacy Policy"
-metaDescription: "This is a example description"
+metaDescription: "Frontera Fund values your privacy and is committed to protecting your personal information."
 draft: false
 ---
 
-**Effective Date: July, 2022**
+# Frontera Fund Privacy Policy
 
-Welcome to Folex ("we," "our," or "us"). Your privacy is important to us, and we are committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website, https://www.folex.com ("Website").
+Frontera Fund values your privacy and is committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your personal information when interacting with us, including when you receive SMS/MMS communications.
 
-### Information We Collect
+## Information We Collect
 
-We collect two types of information from you:
+When you engage with Frontera Fund for healthcare support, patient navigation, general inquiries, or as a donor, we may collect the following information:
 
-- **Personal Information:**
-  - Name
-  - Email address
-  - Billing information (e.g., credit card details)
-  - Any information you provide voluntarily through forms, surveys, or account creation
+- Name
+- Phone Number
+- Email Address (if provided)
+- Mailing Address (if provided by donors or supporters)
+- Donation History (amount, frequency, and method of donation)
+- Travel Details (when assisting with logistics)
+- Health-related Information (only as needed for service provision)
+- Demographic information (if provided)
 
-- **Non-Personal Information:**
-  - IP address
-  - Browser type
-  - Operating system
-  - Pages visited and time spent on our site
-  - Referring website
+## How We Use Your Information
 
-### How We Use Your Information
+We use your information solely for the purpose of providing the services you request, including:
 
-We use the information we collect for the following purposes:
+- Booking travel or coordinating healthcare services
+- Sending important updates, reminders, and resource information via SMS/MMS
+- Answering questions and offering patient navigation support through text
+- Acknowledging and managing donor contributions
+- Sending donor-related updates, receipts, or tax documentation
+- Providing updates about our work or upcoming events (for donors or supporters who consent to receive communications)
+- We will not use your information for any marketing purposes unless you provide explicit consent.
 
-- To provide and improve our services
-- To process transactions and send receipts
-- To send you updates, promotions, and service-related communications
-- To personalize your experience on our Website
-- To comply with legal obligations
-- To detect and prevent fraudulent activity
+## SMS Consent Disclosure
 
-### Cookies and Tracking Technologies
+By providing your number, you agree to receive communications by text message about your inquiry or support. You may opt out at any time by replying STOP to any text message you receive from us. Reply HELP for assistance. Message frequency varies. Message and data rates may apply.
 
-We use cookies and similar tracking technologies to enhance your experience on our Website. These include:
+- Opting Out: You may opt out of receiving SMS messages at any time by replying with “STOP” to any SMS message. After opting out, you will receive a confirmation message, and we will cease sending SMS messages to your number.
+- Help and Support: If you need assistance, reply with “HELP” to any SMS message or contact us at 956-887-0706 or privacy@fronterafundrgv.org.
+- Privacy Policy: Your phone number will be handled in accordance with this Privacy Policy. We do not sell or share your phone number with third parties except as required by law.
 
-- **Essential Cookies:** Required for the operation of our Website.
-- **Performance Cookies:** Help us understand how you use our site.
-- **Marketing Cookies:** Track your browsing behavior for targeted advertising.
+## Data Sharing
 
-You can control cookies through your browser settings.
+Frontera Fund does not sell or share your personal information with third parties for marketing purposes. Your information will only be shared with trusted partners or service providers to the extent necessary to:
 
-### Sharing of Information
+- Provide the services you requested (e.g., booking travel).
+- Manage and process donations (e.g., working with payment processors or accountants)
 
-We do not sell, rent, or trade your personal information. However, we may share your information with:
+We ensure that any third-party service providers with whom we share your information are required to maintain the confidentiality and security of your personal data.
 
-- **Service Providers:** Third-party companies that help us operate our Website and provide services.
-- **Legal Authorities:** When required by law or to protect our rights and property.
-- **Business Transfers:** In case of a merger, acquisition, or sale of assets.
+## Your Choices
 
-### Data Security
+You may opt-in to receive SMS/MMS communications by providing your consent when you engage with us. You can opt-out at any time by replying STOP to any text message you receive from us.
+You also have the right to:
 
-We implement industry-standard security measures to protect your data. However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee absolute security.
+- Request access to the personal information we hold about you.
+- Request that we update or delete your personal information (unless it’s necessary for us to retain it for legal reasons).
+- Revoke your consent to receive SMS/MMS communications.
 
-### Your Rights
+## Security of Your Information
 
-Depending on your location, you may have the following rights regarding your personal information:
+We take the security of your personal information seriously. We use appropriate technical and organizational measures to safeguard your data against unauthorized access, disclosure, or misuse.
 
-- Access your data
-- Correct or update your data
-- Request deletion of your data
-- Restrict processing of your data
-- Withdraw consent for data usage
+## Changes to Our Privacy Policy
 
-To exercise your rights, please contact us at privacy@folex.com.
+Frontera Fund reserves the right to update or modify this Privacy Policy at any time. We will notify you of any significant changes by updating the policy on our website.
 
-### Third-Party Links
+## Contact Us
 
-Our Website may contain links to third-party websites. We are not responsible for the privacy practices of these websites. We encourage you to review their privacy policies before providing any personal information.
+If you have any questions about this Privacy Policy or how we handle your personal information, please contact us at:
+Frontera Fund
+PO Box 721011
+McAllen, TX 78504
+Phone: 956-887-0706
+Email: privacy@fronterafundrgv.org
 
-### Children's Privacy
-
-Our Website is not intended for individuals under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have collected such information, please contact us immediately.
-
-### Changes to This Privacy Policy
-
-We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Effective Date." We encourage you to review this Privacy Policy periodically.
-
-### Contact Us
-
-If you have any questions or concerns about this Privacy Policy, please contact us at:
-
-Folex
-Email: privacy@folex.com
-Address: 123 Folex Lane, Imaginary City, IC 12345, USA
-
-Thank you for trusting Folex with your personal information!

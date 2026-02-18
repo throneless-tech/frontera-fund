@@ -23,7 +23,7 @@ let {
 // https://astro.build/config
 export default defineConfig({
   site: config.site.baseUrl ? config.site.baseUrl : "http://examplesite.com",
-  trailingSlash: config.site.trailingSlash ? "always" : "never",
+  trailingSlash: config.site.trailingSlash ? "ignore" : "always",
   i18n: {
     locales: enabledLanguages,
     defaultLocale: defaultLanguage,
