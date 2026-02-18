@@ -2,13 +2,8 @@
   "headerPrimary": [
     {
       "enable": true,
-      "name": "Home",
-      "url": "/"
-    },
-    {
-      "enable": true,
-      "name": "About Us",
-      "url": "/#about"
+      "name": "Resources",
+      "url": "/get-help"
     },
     {
       "enable": true,

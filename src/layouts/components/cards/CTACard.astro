@@ -25,7 +25,7 @@ const {
 {
   enable && (
     <div class:list={[
-        "bg-theme-light flex flex-col items-start justify-between ",
+        "bg-theme-light",
         className,
       ]}>
                         {
@@ -59,12 +59,12 @@ const {
           )}
         </div>
         {description && (
-          <p class="text-lg" set:html={markdownify(description)} />
+          <p class="text-md md:text-lg" set:html={markdownify(description)} />
         )}
       </div>
       {button?.enable && (
         <CustomButton
-          class="w-100 ml-auto mr-auto effect-color-accent text-center"
+          class="md:w-100 ml-auto mr-auto effect-color-accent text-center"
           hoverEffect="creative-fill"
           {...button}
         />

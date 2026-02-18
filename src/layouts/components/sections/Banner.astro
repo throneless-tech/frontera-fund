@@ -43,8 +43,8 @@ const fontSizeMap: Record<NonNullable<typeof titleSize>, string> = {
 
 const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
 ---
-
-<section class="bg-gradient mb-20 bg-light pt-30 sm:pt-40 md:pt-52 md:mb-32">
+<div class="bg-primary pb-20 md:pb-52">
+  <section class="bg-gradient pt-30 sm:pt-40 md:pt-52 ">
   <div class="container">
     <div class="mx-auto max-w-7xl space-y-7 text-center md:space-y-10">
       {
@@ -104,7 +104,7 @@ const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
             data-aos-duration="1500"
             data-aos-delay="300"
             data-aos-offset="0"
-            class="mx-auto mt-10 -mb-24 max-w-4xl md:-mb-32">
+            class="mx-auto mt-24 -mb-34 max-w-4xl md:-mb-32">
             <OptimizedImage
               src={image}
               alt={title || "Banner"}
@@ -116,3 +116,4 @@ const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
     </div>
   </div>
 </section>
+</div>

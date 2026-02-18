@@ -364,7 +364,13 @@ footer {
   /* background: radial-gradient(circle at top, #fcf2e0 44%, #4fccea 60%, #9e8eff 79%, #7c1119 93%); */
   background: hsla(39, 82%, 93%, 1);
 
-  background: radial-gradient(circle at top, hsla(39, 82%, 93%, 1) 50%, hsla(356, 76%, 28%, 1) 60%, hsla(192, 79%, 61%, 1) 70%, hsla(248, 100%, 78%, 1) 78%, hsla(40, 100%, 60%, 1) 86%, hsla(356, 76%, 28%, 1) 92%, hsla(356, 76%, 28%, 1) 100%);
+  background: radial-gradient(100% 96% at top, hsla(39, 82%, 93%, 1) 60%, hsla(356, 76%, 28%, 1) 65%, hsla(192, 79%, 61%, 1) 70%, hsla(248, 100%, 78%, 1) 75%, hsla(40, 100%, 60%, 1) 80%, hsla(356, 76%, 28%, 1) 85%, hsla(356, 76%, 28%, 1) 100%);
+}
+
+@media (max-width:780px) {
+  .bg-gradient {
+    background: radial-gradient(160% 96% at top, hsla(39, 82%, 93%, 1) 60%, hsla(356, 76%, 28%, 1) 65%, hsla(192, 79%, 61%, 1) 70%, hsla(248, 100%, 78%, 1) 75%, hsla(40, 100%, 60%, 1) 80%, hsla(356, 76%, 28%, 1) 85%, hsla(356, 76%, 28%, 1) 100%);
+  }
 }
 
 .bg-gradient--footer {
@@ -372,7 +378,14 @@ footer {
   /* background: radial-gradient(circle at top, #fcf2e0 44%, #4fccea 60%, #9e8eff 79%, #7c1119 93%); */
   background: hsla(39, 82%, 93%, 1);
 
-  background: radial-gradient(140% 100% at bottom, hsla(39, 82%, 93%, 1) 50%, hsla(356, 76%, 28%, 1) 60%, hsla(192, 79%, 61%, 1) 70%, hsla(248, 100%, 78%, 1) 78%, hsla(40, 100%, 60%, 1) 86%, hsla(356, 76%, 28%, 1) 92%, hsla(356, 76%, 28%, 1) 100%);
+  background: radial-gradient(90% 96% at bottom, hsla(39, 82%, 93%, 1) 60%, hsla(356, 76%, 28%, 1) 65%, hsla(192, 79%, 61%, 1) 70%, hsla(248, 100%, 78%, 1) 75%, hsla(40, 100%, 60%, 1) 80%, hsla(356, 76%, 28%, 1) 85%, hsla(356, 76%, 28%, 1) 100%);
+}
+
+@media (max-width:780px) {
+  .bg-gradient--footer {
+
+    background: radial-gradient(160% 96% at bottom, hsla(39, 82%, 93%, 1) 60%, hsla(356, 76%, 28%, 1) 65%, hsla(192, 79%, 61%, 1) 70%, hsla(248, 100%, 78%, 1) 75%, hsla(40, 100%, 60%, 1) 80%, hsla(356, 76%, 28%, 1) 85%, hsla(356, 76%, 28%, 1) 100%);
+  }
 }
 
 /* Sections */

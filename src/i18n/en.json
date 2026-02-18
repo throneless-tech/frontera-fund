@@ -8,7 +8,7 @@
     "paginationBlogNext": "Next Post"
   },
   "headerOffcanvas": {
-    "description": "Need help now? Reach out to us 24/7 via call or text:<br /> <br />(956) 887-0706 ",
+    "description": "Need help now? Reach out to us 24/7 via call or text:<br /> <br /><a href='tel:+19568870706'>(956) 887-0706</a> ",
     "buttonLabel": "Let’s Talk With Us"
   },
   "navigation": {

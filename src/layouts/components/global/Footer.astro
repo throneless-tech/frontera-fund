@@ -35,7 +35,7 @@ const copyrightParts = splitProtectedText(copyrightText);
 
 <footer
   id="footer-with-contact"
-  class:list={["bg-gradient--footer bg-light mt-10 pt-10", !footerSpaceTop && "mt-30"]}>
+  class:list={["bg-gradient--footer bg-light mt-0 pt-20", !footerSpaceTop && "mt-30"]}>
   <div class="container pb-8 lg:pb-16 grid grid-cols-1 lg:grid-cols-3 text-xl">
     <div class="lg:col-span-3 text-center">
         <OptimizedImage
@@ -49,7 +49,7 @@ const copyrightParts = splitProtectedText(copyrightText);
     <div class="mt-16 lg:mt-10 text-center lg:text-left">
       <ul>
         <li>
-          <a class="active:underline focus:underline hover:underline" href="#FIXME">About us</a>
+          <a class="active:underline focus:underline hover:underline" href="/get-help">Resources</a>
         </li>
         <li>
           <a class="active:underline focus:underline hover:underline" href="#FIXME">Blog</a>
@@ -82,13 +82,26 @@ const copyrightParts = splitProtectedText(copyrightText);
           />
       <div>
         <div>
-          <a class="active:underline focus:underline hover:underline" href="/privacy-policy">Privacy policy</a>
+          <a class="active:underline focus:underline hover:underline" href="/privacy-policy/">Privacy policy</a>
         </div>
         <div>
-          <a class="active:underline focus:underline hover:underline" href="/legal-disclaimers">Legal disclaimers</a>
+          <a class="active:underline focus:underline hover:underline" href="/legal-disclaimers/">Legal disclaimers</a>
         </div>
       </div>
     </div>
+  </div>
+  <div class="container">
+    {
+      config.settings.copyright?.enable && (
+        <ul class="has-list has-list-slash prose-a:text-inherit flex flex-wrap gap-y-2">
+          {copyrightParts.map((value) => (
+            <li class="prose-a:text-text-default/70 prose-a:hover:text-text-default text-sm">
+              <span set:html={markdownify(value)} />
+            </li>
+          ))}
+        </ul>
+      )
+    }
   </div>
   <!-- <div class="container pb-8 lg:pb-16">
     <div
