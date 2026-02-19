@@ -65,17 +65,24 @@ if (typeof content.render === "function") {
           </div>
         )
       }
-      {resources && (
-        <div>
-          {/* <ResourceCard
-            class:list={["space-y-4 overflow-hidden"]}
-            options={options}
-            translations={t}
-            content={'test'}
-            index={'index'}
-          /> */}
+
+      <div id="resources">
+        <h2 class="text-h2-sm md:text-h2">Resources</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-20 mt-20">
+          {resources?.map(resource => (
+            <ResourceCard
+                logo={resource.logo}
+                link={resource.link}
+                title={resource.title}
+                description={resource.description}
+                index={resource.id}
+              />
+            ))
+          }
         </div>
-      )}
+      </div>
+      
     </div>
   </div>
 </section>

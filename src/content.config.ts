@@ -27,7 +27,15 @@ export const page = z.object({
   canonical: z.string().optional(),
   keywords: z.array(z.string()).optional(),
   disableTagline: z.boolean().optional(),
-  resources: z.boolean().optional(), // whether this page includes a grid of resourcess
+  resources: z.array(
+    z.object({
+      title: z.string(),
+      description: z.string().optional(),
+      logo: z.string().optional(),
+      link: z.string(),
+      id: z.string(),
+    }),
+  ).optional(),
   ...sectionsSchema,
 });
 

@@ -5,93 +5,63 @@ import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
 import type { CollectionEntry } from "astro:content";
 
 type Props = {
-  index?: number;
-  class?: string;
-  translations?: any;
-  content: CollectionEntry<"blog">;
-  options: CollectionEntry<"blog">["data"]["options"];
+  index: string;
+  logo?: string;
+  title: string,
+  description?: string,
+  // translations?: any;
   [key: string]: any;
 };
 
 let {
   index,
-  rest,
-  content,
-  options: { layout = "grid" } = {},
-  options,
-  class: className,
+  logo,
+  link,
+  title,
+  description,
 } = Astro.props;
 
-let {
-  id,
-  collection,
-  data: { title, categories, image, description, customSlug },
-} = content;
-
 const t = await useTranslations(Astro.currentLocale as string);
-const slug = getLocaleUrlCTM(customSlug || id, Astro.currentLocale, collection);
-const hasCategories = Array.isArray(categories) && categories.length > 0;
-const isDarkAppearance = options?.appearance === "dark";
+
+// const isDarkAppearance = options?.appearance === "dark";
 ---
 
 <div
   class:list={[
-    className,
-    "group",
-    layout === "grid" && "flex flex-col items-start justify-start",
-    isDarkAppearance ? "text-white" : "text-text-default",
+    "border-2 border-primary rounded-lg p-4 space-y-4 overflow-hidden transition duration-250 hover:shadow-xl/40",
+    // "group",
+    "flex flex-col items-start justify-start",
+    "text-text-default",
   ]}
-  {...rest}>
-  {image && (
+>
+  {logo && (
     <a
-      title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
+      title={title}
       class:list={[
-        "order-1 inline-block w-full overflow-hidden",
-        layout === "grid" && "mb-8",
+        "order-1 inline-block mx-auto",
+        "mb-8",
       ]}
-      href={slug}
-      {...{
-        "data-aos":
-          index !== undefined &&
-          ["reveal-anim-left", "reveal-anim-right", "reveal-anim-top"][
-            index % 3
-          ],
-      }}>
+      href={link}
+      >
       <OptimizedImage
-        src={image}
-        alt={title || "Project image"}
+        src={logo}
+        alt={`${title} logo.` || "Resource logo."}
         class:list={[
-          "h-100 scale-110 object-cover transition duration-500 group-hover:translate-x-2",
+          "h-60 scale-110 object-contain transition duration-500 group-hover:translate-x-2",
         ]}
       />
     </a>
   )}
 
-  {hasCategories && (
-    <ul
-      class:list={[
-        "flex flex-wrap items-center gap-x-2 gap-y-1 opacity-80",
-        layout === "grid" && "order-3 mt-3",
-        isDarkAppearance ? "text-light" : "text-inherit",
-      ]}>
-      {categories.map((category: string, index: number) => (
-        <>
-          {index > 0 && <li>/</li>}
-          <li set:html={markdownify(category)} />
-        </>
-      ))}
-    </ul>
-  )}
-
   {title && (
     <h3 class="text-h3-sm md:text-h3 order-2 leading-snug text-inherit">
       <a
-        href={slug}
+        href={link}
         title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}>
         {title}
       </a>
     </h3>
   )}
 
-  {description && <p class="mt-4" set:html={markdownify(description)} />}
+  {description && <p class="mt-4 order-3" set:html={markdownify(description)} />}
 </div>
