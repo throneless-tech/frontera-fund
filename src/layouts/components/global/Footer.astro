@@ -35,18 +35,18 @@ const copyrightParts = splitProtectedText(copyrightText);
 
 <footer
   id="footer-with-contact"
-  class:list={["bg-gradient--footer bg-light mt-0 pt-20", !footerSpaceTop && "mt-30"]}>
-  <div class="container pb-8 lg:pb-16 grid grid-cols-1 lg:grid-cols-3 text-xl">
-    <div class="lg:col-span-3 text-center">
+  class:list={["bg-blue mt-0 pt-20", !footerSpaceTop && "mt-30"]}>
+  <div class="container pb-8 lg:pb-16 flex flex-col items-center justify-between md:flex-row text-xl font-secondary">
+    <div class="text-center md:order-2 lg:border-r lg:border-r-amber-100 lg:mr-10">
         <OptimizedImage
           src='/images/logo-art.png'
           alt={title || "Frontera Fund logo."}
           class:list={[
-            "h-80 object-contain mx-auto",
+            "h-60 object-contain",
           ]}
         />
     </div>
-    <div class="mt-16 lg:mt-10 text-center lg:text-left">
+    <div class="md:order-1 mt-16 lg:mt-10 text-center lg:text-left lg:pr-20 lg:border-r lg:border-r-amber-100">
       <ul>
         <li>
           <a class="active:underline focus:underline hover:underline" href="/get-help">Resources</a>
@@ -61,18 +61,18 @@ const copyrightParts = splitProtectedText(copyrightText);
           <a class="active:underline focus:underline hover:underline" href="#FIXME">Donate</a>
         </li>
       </ul>
-    </div>
-    <div class="mt-10 text-center lg:text-left">
-      <div>
-        Helpline:
-        <a class="active:underline focus:underline hover:underline" href="tel:+19568870706">(956) 887-0706</a>
+      <div class="mt-10 text-center lg:text-left md:order-3">
+        <div>
+          Helpline:
+          <a class="active:underline focus:underline hover:underline" href="tel:+19568870706">(956) 887-0706</a>
+        </div>
+        <div class="mt-10">
+          <p>P.O. Box 721011</p>
+          <p>McAllen, TX 78504</p>
+        </div>
       </div>
-      <div class="mt-10">
-        <p>P.O. Box 721011</p>
-        <p>McAllen, TX 78504</p>
-      </div>
     </div>
-    <div class="flex flex-col items-center gap-10 mt-10 text-center lg:text-left">
+    <div class="flex flex-col items-start gap-10 mt-10 text-center lg:text-left md:order-3">
       <SocialComponent
             size="lg"
             layout="dark"

@@ -1,0 +1,15 @@
+---
+
+// Props
+interface Props {
+  text?: string;
+  url?: string;
+}
+
+const { text, url } = Astro.props;
+
+---
+
+<div class="bg-salmon p-2 text-center text-xl text-light">
+  <a href="#FIXME">Banner text goes here. If there is a link provided, this will link to a page, internal or external.</a>
+</div>

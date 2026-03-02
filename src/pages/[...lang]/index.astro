@@ -15,7 +15,7 @@ export function getStaticPaths() {
 const page = await getEntryCTM("homepage", "-index", Astro.currentLocale);
 ---
 
-<Base {...page?.data} headerPosition="fixed" hasHeaderDarkBackground={true}>
+<Base {...page?.data} headerPosition="sticky" hasHeaderDarkBackground={true}>
   <Banner />
   <ServicesSection />
   <CTASection />

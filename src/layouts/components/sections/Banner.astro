@@ -43,10 +43,26 @@ const fontSizeMap: Record<NonNullable<typeof titleSize>, string> = {
 
 const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
 ---
-<div class="bg-primary pb-20 md:pb-52">
-  <section class="bg-gradient pt-30 sm:pt-40 md:pt-52 ">
-  <div class="container">
-    <div class="mx-auto max-w-7xl space-y-7 text-center md:space-y-10">
+<div class="bg-primary">
+  <section class="bg-primary relative">
+    {
+      image && (
+        <div
+          data-aos="reveal-anim-top"
+          data-aos-duration="1500"
+          data-aos-delay="300"
+          data-aos-offset="0"
+          class="h-full absolute left-0 top-0 mix-blend-multiply">
+          <OptimizedImage
+            src={image}
+            alt={title || "Banner image"}
+            class="w-full object-contain"
+          />
+        </div>
+      )
+    }
+  <div class="container z-10 relative pt-54 md:pt-20 lg:pt-40 pb-4 md:pb-20">
+    <div class="bg-yellow/75 mx-auto max-w-7xl py-6 space-y-7 text-center md:space-y-10">
       {
         title && (
           <h1
@@ -56,7 +72,7 @@ const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
               "text-inherit",
               // fontSize,
               "text-4xl md:text-5xl",
-              "block leading-tight font-bold break-words text-inherit",
+              "block leading-tight font-bold wrap-break-word text-inherit",
             ]}
             set:html={markdownify(title)}
           />
@@ -94,23 +110,6 @@ const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
             />
             </div>
           )
-        )
-      }
-
-      {
-        image && (
-          <div
-            data-aos="reveal-anim-top"
-            data-aos-duration="1500"
-            data-aos-delay="300"
-            data-aos-offset="0"
-            class="mx-auto mt-24 -mb-34 max-w-4xl md:-mb-32">
-            <OptimizedImage
-              src={image}
-              alt={title || "Banner"}
-              class="h-110 w-full object-contain md:h-135"
-            />
-          </div>
         )
       }
     </div>
