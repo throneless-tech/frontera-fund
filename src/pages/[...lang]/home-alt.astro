@@ -1,0 +1,24 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import Clients from "@/components/sections/Clients.astro";
+import { getEntryCTM } from "@/lib/customContentLoader.astro";
+import BannerAlt from "@/components/sections/BannerAlt.astro";
+import CTASection from "@/components/sections/CTASection.astro";
+import ServicesSectionAlt from "@/components/sections/ServicesSectionAlt.astro";
+import BlogSection from "@/components/sections/BlogSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const page = await getEntryCTM("homepage", "-index", Astro.currentLocale);
+---
+
+<Base {...page?.data} headerPosition="sticky" hasHeaderDarkBackground={true}>
+  <BannerAlt />
+  <ServicesSectionAlt />
+  <CTASection />
+  <!-- <Clients /> -->
+  <BlogSection />
+</Base>

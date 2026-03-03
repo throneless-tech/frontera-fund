@@ -95,7 +95,7 @@
 
     .nav-link,
     .nav-dropdown-link {
-      @apply font-secondary text-text-default hover:bg-primary/5 hover:text-primary relative flex w-full items-center px-5 py-3 text-sm font-normal uppercase transition duration-300;
+      @apply font-secondary text-text-default hover:bg-blue/70 hover:text-dark relative flex w-full items-center px-5 py-3 text-sm font-normal uppercase transition duration-300;
 
       &.nav-link-active {
         @apply max-lg:text-accent;
