@@ -7,7 +7,7 @@ import Header from "@/components/global/header/Header.astro";
 import type { JSONLDProps } from "@/lib/utils/JsonLdGenerator";
 import HelperButtons from "@/components/utilities/HelperButtons.astro";
 import BreakpointIndicator from "@/components/widgets/BreakpointIndicator.astro";
-import FooterThree from "@/components/global/Footer.astro";
+import Footer from "@/components/global/Footer.astro";
 
 interface Props extends JSONLDProps {
   className?: string;
@@ -39,7 +39,6 @@ let {
   hasHeaderDarkBackground = false,
   hasBodyDarkBackground = false,
   footerSpaceTop = true,
-  footerLayout = "footer-3",
   fitToScreen = true,
 } = Astro.props;
 
@@ -66,21 +65,7 @@ className = fitToScreen
       <slot />
     </main>
 
-    {
-      footerLayout === "footer-1" ? (
-        <div class="py-8 text-center text-sm text-gray-400 italic">
-          "Footer Layout One" is only available in the Pro version. Purchase
-          Folex premium version to unlock this layout.
-        </div>
-      ) : footerLayout === "footer-2" ? (
-        <div class="py-8 text-center text-sm text-gray-400 italic">
-          "Footer Layout Two" is only available in the Pro version. Purchase
-          Folex premium version to unlock this layout.
-        </div>
-      ) : footerLayout === "footer-3" ? (
-        <FooterThree footerSpaceTop={footerSpaceTop} />
-      ) : null
-    }
+    <Footer footerSpaceTop={footerSpaceTop} />
 
     <HelperButtons />
     <script>

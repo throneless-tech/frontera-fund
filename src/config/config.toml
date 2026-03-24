@@ -25,13 +25,13 @@
 # Specific SEO configurations that complement the general site settings.
 # -----------------------------------------------------------------------------------------------------------------------------------
 [seo] #FIXME
-  author = "Getastrothemes"
+  author = "Rae Gaines, Throneless Tech"
   keywords = [
-    "free digital agency",
-    "free astro template",
-    "free astro theme",
-    "free astro agency template",
-    "free astro agency theme",
+    "Frontera Fund",
+    "reproductive justice",
+    "reproductice healthcare",
+    "Rio Grande Valley",
+    "Texas border",
   ]
   robots = "index, follow" # Instructs search engines on how to crawl and index the pages.
 
@@ -66,13 +66,13 @@
   contactFormAction   = "https://formsubmit.co/your_email@example.com"
   contactFormProvider = "formsubmit.co"
 
-  footerDescription = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the footer description in different languages or directly add value here if you are not using internationalization feature
+  footerDescription = "" # Check src/i18n/en.json and src/i18n/es.json for changing the footer description in different languages or directly add value here if you are not using internationalization feature
 
-  # For changing footer description and footer copyright in different languages see src/i18n/en.json and src/i18n/fr.json
+  # For changing footer description and footer copyright in different languages see src/i18n/en.json and src/i18n/es.json
   # We kindly appreciate it if you retain the theme copyright. Thank you for supporting Getastrothemes!
   [settings.copyright]
     enable = true
-    text   = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the copyright text in different languages or directly add value here if you are not using internationalization feature
+    text   = "" # Check src/i18n/en.json and src/i18n/es.json for changing the copyright text in different languages or directly add value here if you are not using internationalization feature
 
   # Multilingual settings (check src/config/language.json for changing the languages)
   # NOTE: Manually restart your server when you change the following multilingual table values
@@ -95,18 +95,18 @@
   [settings.headerOffcanvas]
     enable      = true
     logo        = "/images/logo-light.png"
-    description = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the description in different languages or directly add value here if you are not using internationalization feature. This is also used in footer of personal-portfolio homepage
+    description = "" # Check src/i18n/en.json and src/i18n/es.json for changing the description in different languages or directly add value here if you are not using internationalization feature. This is also used in footer of personal-portfolio homepage
 
     # Call To Action Button
     [settings.headerOffcanvas.button]
       enable = true
-      label  = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the button label in different languages or directly add value here if you are not using internationalization feature
+      label  = "" # Check src/i18n/en.json and src/i18n/es.json for changing the button label in different languages or directly add value here if you are not using internationalization feature
       url    = "/"
 
 # Quick exit Button In Header
 [settings.navigationButton]
   enable = true
-  label  = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the navigation button label in different languages or directly add value here if you are not using internationalization feature
+  label  = "" # Check src/i18n/en.json and src/i18n/es.json for changing the navigation button label in different languages or directly add value here if you are not using internationalization feature
   url    = "https://weather.com"
 
 
