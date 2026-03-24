@@ -53,13 +53,6 @@ if (!enable) return;
 
 const isCreativeHoverEffect = hoverEffect === "creative-fill";
 
-// Show upgrade message if using any hover effect not supported in the free version
-if (hoverEffect && hoverEffect !== "creative-fill") {
-  console.warn(
-    `${hoverEffect} hover effect is a pro feature and only available in the Pro version of this template.`,
-  );
-}
-
 const resolvedRel = url.startsWith("http")
   ? rel || "noopener noreferrer"
   : rel || null;

@@ -36,8 +36,8 @@ const copyrightParts = splitProtectedText(copyrightText);
 <footer
   id="footer-with-contact"
   class:list={["bg-salmon mt-0 pt-20", !footerSpaceTop && "mt-30"]}>
-  <div class="container pb-8 lg:pb-16 flex flex-col items-center justify-between md:flex-row text-xl font-secondary">
-    <div class="text-center md:order-2 lg:border-r lg:border-r-amber-100 lg:mr-10">
+  <div class="container pb-8 lg:pb-16 flex flex-col gap-8 items-center justify-between md:flex-row text-xl font-secondary">
+    <div class="footer-border text-center md:order-2">
         <OptimizedImage
           src='/images/logo-art.png'
           alt={title || "Frontera Fund logo."}
@@ -46,7 +46,7 @@ const copyrightParts = splitProtectedText(copyrightText);
           ]}
         />
     </div>
-    <div class="md:order-1 mt-16 lg:mt-10 text-center lg:text-left lg:pr-20 lg:border-r lg:border-r-amber-100">
+    <div class="md:order-1 mt-16 lg:mt-10 text-center lg:text-left">
       <ul>
         <li>
           <a class="active:underline focus:underline hover:underline" href="/get-help">Resources</a>
@@ -157,3 +157,31 @@ const copyrightParts = splitProtectedText(copyrightText);
     </div>
   </div> -->
 </footer>
+
+<style>
+  @media (min-width: 1024px) {
+    .footer-border {
+      position: relative;
+    }
+
+    .footer-border::before {
+      background-color: var(--color-dark);
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1px;
+    }
+
+    .footer-border::after {
+      background-color: var(--color-dark);
+      content: "";
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 1px;
+    }
+  }
+</style>

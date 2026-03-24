@@ -1,14 +1,16 @@
 ---
+import ReactIcons from "@/helpers/ReactIcons.astro";
 import CustomButton from "../CustomButton.astro";
 ---
 
 <div
   class="action-buttons pointer-events-none fixed end-0 bottom-5 z-100 mb-8 flex flex-col items-end space-y-2 opacity-0 transition-all duration-300 [&.scroll-down]:pointer-events-auto [&.scroll-down]:end-5 [&.scroll-down]:opacity-100">
-  <div class="bg-primary p-4 mb-8 shadow-xl rounded-lg text-light text-xl font-semibold">
-    <div>
+  <div class="bg-primary p-4 mb-8 shadow-xl rounded-lg text-light text-xl ">
+    <div class="flex items-center justify-start gap-2">
+      <ReactIcons icon="FaPhoneAlt" />
       Call the helpline 24/7:
     </div>
-    <div>
+    <div class="text-center">
       <a class="underline" href="tel:+19568870706">
         (956) 887-0706
       </a>
