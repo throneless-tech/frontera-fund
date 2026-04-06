@@ -28,7 +28,7 @@ list:
   - enable: true
     name: "Ce Plan"
     description: "Nous nous soucions de leur réussite. Pour nous, les relations authentiques sont vraies"
-    image: "/images/cta.png"
+    image: "/images/cta.jpg"
     price:
       prependValue: "€"
       value: "180"

@@ -50,7 +50,7 @@ list:
   - enable: true
     name: "Ready to join the fight?"
     description: "Join our mailing list to get the latest updates on what’s happening with Frontera Fund."
-    image: "/images/cta.png"
+    image: "/images/cta.jpg"
     price:
       prependValue: "$"
       value: "180"
