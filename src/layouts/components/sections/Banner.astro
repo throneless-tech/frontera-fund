@@ -1,9 +1,15 @@
 ---
+import type { z } from "astro/zod";
 import CustomButton from "@/components/CustomButton.astro";
 import { Image } from "astro:assets";
+import type { bannerSchema } from "@/sections.schema";
+
+type bannerType = 
+  z.infer<typeof bannerSchema>;
 
 type Props = {
-  content?: any;
+  content: bannerType;
+  class?: string;
 };
 
 const { content } = Astro.props
@@ -32,7 +38,7 @@ const { content } = Astro.props
   <div class="container z-10 relative pt-54 md:pt-20 lg:pt-40 pb-4 md:pb-20">
     <div class="bg-primary/80 text-body mx-auto max-w-7xl py-6 space-y-7 text-center md:space-y-10">
       {
-        content?.heroTitle && (
+        content?.title && (
           <h1
             data-aos="reveal-anim-top"
             data-aos-duration="1500"
@@ -42,7 +48,7 @@ const { content } = Astro.props
               "block leading-tight font-bold wrap-break-word text-inherit",
             ]}
           >
-            {content.heroTitle}
+            {content.title}
           </h1>
         )
       }
@@ -51,19 +57,19 @@ const { content } = Astro.props
         data-aos-duration="1500"
         data-aos-delay="200"
         class="mx-auto max-w-xl space-y-8">
-        {content?.heroSubtitle && (
+        {content?.subtitle && (
           <p
             class="text-lg md:text-2xl text-inherit opacity-80"
           >
-            {content.heroSubtitle}
+            {content.subtitle}
           </p>
         )}
-        {content?.heroCTA && (
+        {content?.CTA && (
           <CustomButton
             hoverEffect="creative-fill"
             class="btn-accent effect-color-dark mx-auto"
-            url={content.heroCTALink}
-            label={content.heroCTA}
+            url={content.CTALink}
+            label={content.CTA}
             class="bg-secondary active:bg-yellow focus:bg-yellow hover:bg-yellow creative-hover-anim text-dark"
           />
         )}

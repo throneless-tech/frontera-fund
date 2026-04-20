@@ -27,6 +27,8 @@ const {
   hasDarkBackground = false,
   hideOffcanvas,
   class: ClassName,
+  banner,
+  items,
 } = Astro.props;
 ---
 
@@ -40,7 +42,9 @@ const {
     { "has-sticky-behavior": stickyHeader || position === "fixed" },
     ClassName,
   ]}>
-  <Banner />
+  {banner && (
+    <Banner data={banner} />
+  )}
   <nav class="xl:container-12xl relative max-xl:container">
     <div
       class="hs-dropdown relative flex md:flex-wrap items-center justify-between py-2[--auto-close:inside] [--gpu-acceleration:false] [--strategy:absolute] lg:[--strategy:static]">
@@ -49,7 +53,7 @@ const {
       </div>
 
       <!-- Navbar For Header -->
-      <Navbar />
+      <Navbar items={items} />
 
       {/* Language Switcher For Small Devices */}
       {

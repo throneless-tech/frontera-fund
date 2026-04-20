@@ -23,76 +23,70 @@ if (typeof content.render === "function") {
 
 <section class="pt-8">
   <div class="">
-      <div
-        class:list={[
-          "has-video-modal max-w-full space-y-10 lg:p-5",
-          className,
-        ]}>
-        {
-          image && Content && (
-            <OptimizedImage
-              width={896}
-              height={500}
-              alt={title}
-              src={image as string}
-              class:list={["h-125 w-full object-cover"]}
-            />
-          )
-        }
-
-        <div class="container">
-          <div class="space-y-2">
-            <ul
-              class="text-dark flex flex-wrap items-center gap-x-5 gap-y-1 tracking-wide">
-              {
-                date && (
-                  <li>
-                    {date &&
-                      markdownify(formatRelativeDate(date, "dd MMM, yyyy"))}
-                  </li>
-                )
-              }
-  
-              {
-                categories?.map((category: string) => (
-                  <li class="before:bg-dark relative pe-5 before:absolute before:end-0 before:top-1/2 before:h-1 before:w-1 before:-translate-y-1/2 before:rounded-full before:content-['']">
-                    {markdownify(category)}
-                  </li>
-                ))
-              }
-            </ul>
-            {title && <h1 class="text-h2-sm md:text-h2" set:html={title} />}
-          </div>
-          {
-            Content && (
-              <div class="prose-styles content has-video-modal prose-headings:mb-6 prose-headings:mt-10">
-                <Content />
-              </div>
-            )
-          }
-        </div>
-
-      </div>
-
-      <div class="bg-(--color-blue)/70">
-        <div id="resources" class="container py-8">
-          <h2 class="text-h2-sm md:text-h2">Resources</h2>
-
-          <div
-            class="mt-20 grid grid-cols-1 gap-20 md:grid-cols-2 xl:grid-cols-3">
+    <div
+      class:list={[
+        "has-video-modal max-w-full space-y-10 bg-(--color-blue)/70 lg:p-5",
+        className,
+      ]}>
+      {
+        image && Content && (
+          <OptimizedImage
+            width={896}
+            height={500}
+            alt={title}
+            src={image as string}
+            class:list={["h-125 w-full object-cover"]}
+          />
+        )
+      }
+      <div class="container">
+        <div class="space-y-2">
+          <ul
+            class="text-dark flex flex-wrap items-center gap-x-5 gap-y-1 tracking-wide">
             {
-              resources?.map((resource) => (
-                <ResourceCard
-                  logo={resource.logo}
-                  link={resource.link}
-                  title={resource.title}
-                  description={resource.description}
-                  index={resource.id}
-                />
+              date && (
+                <li>
+                  {date &&
+                    markdownify(formatRelativeDate(date, "dd MMM, yyyy"))}
+                </li>
+              )
+            }
+
+            {
+              categories?.map((category: string) => (
+                <li class="before:bg-dark relative pe-5 before:absolute before:end-0 before:top-1/2 before:h-1 before:w-1 before:-translate-y-1/2 before:rounded-full before:content-['']">
+                  {markdownify(category)}
+                </li>
               ))
             }
-          </div>
+          </ul>
+          {title && <h1 class="text-h2-sm md:text-h2" set:html={title} />}
         </div>
+        {
+          Content && (
+            <div class="prose-styles content has-video-modal prose-headings:mb-6 prose-headings:mt-10">
+              <Content />
+            </div>
+          )
+        }
       </div>
+    </div>
+    <div id="resources" class="container py-8">
+      <h2 class="text-h2-sm md:text-h2">Resources</h2>
+
+      <div class="mt-20 grid grid-cols-1 gap-20 md:grid-cols-2 xl:grid-cols-3">
+        {
+          resources?.map((resource) => (
+            <ResourceCard
+              logo={resource.logo}
+              link={resource.link}
+              title={resource.title}
+              description={resource.description}
+              index={resource.id}
+            />
+          ))
+        }
+      </div>
+    </div>
   </div>
 </section>

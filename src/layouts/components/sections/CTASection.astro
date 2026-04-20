@@ -13,40 +13,14 @@ type Props = {
   content?: CTASectionSchema;
 };
 
-// Fetching the default content for the this section
-let defaultContent = (
-  await getEntryCTM("sections", "CTA-section", Astro.currentLocale)
-)?.data as CTASectionSchema;
+const { content } = Astro.props
 
-// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
-// The 'content' prop should match the structure of 'defaultContent'.
-// Allows using this section with different content across multiple pages.
-// If 'content' is missing, 'defaultContent' will be used.
-let actualContent = overrideObjects(
-  { ...defaultContent },
-  Astro.props.content,
-) as CTASectionSchema;
-
-// Extracting required values from 'content' object
-let { enable = true, title, list } = actualContent || {};
-
-if (!enable) {
-  return null;
-}
 ---
 
 <section id="contact" class="bg-primary pb-20 md:pb-30">
   <div class="container space-y-14">
-    {
-      title && (
-        <div class="text-center">
-          <h2 class="text-h1-sm md:text-h1" set:html={markdownify(title)} />
-        </div>
-      )
-    }
-
     <div class="container">
-      {list.map((item) => <CTACard content={item} />)}
+      <CTACard content={content} />
     </div>
   </div>
 </section>

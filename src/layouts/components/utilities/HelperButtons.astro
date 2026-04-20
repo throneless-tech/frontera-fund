@@ -1,6 +1,8 @@
 ---
 import ReactIcons from "@/helpers/ReactIcons.astro";
 import CustomButton from "../CustomButton.astro";
+
+const { hotline } = Astro.props;
 ---
 
 <div
@@ -11,8 +13,8 @@ import CustomButton from "../CustomButton.astro";
       Call the helpline 24/7:
     </div>
     <div class="text-center">
-      <a class="underline" href="tel:+19568870706">
-        (956) 887-0706
+      <a class="underline" href={`tel:${hotline?.link}`}>
+        {hotline?.number}
       </a>
     </div>
   </div>

@@ -9,15 +9,38 @@ import { getEntryCTM } from "@/lib/customContentLoader.astro";
 import ContactForm from "../widgets/ContactForm.astro";
 import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
 
+interface Props {
+  footerSpaceTop?: boolean,
+  address?: {
+    street1: string,
+    street2?: string,
+    city: string,
+    state: string,
+    zip: string,
+  },
+  hotline?: {
+    number: string,
+    link: string,
+  },
+  items?: [
+    {
+      link: {
+        label: string,
+        url: string,
+        newTab: string
+      }
+    }
+  ]
+}
+
 const config = parseTomlToJson();
 const t = await useTranslations(Astro.currentLocale as string);
 
 let {
   copyright,
   footerDescription,
-  contactInfo: { address, email, phone },
 } = config.settings;
-const { footerSpaceTop = true } = Astro.props;
+const { footerSpaceTop = true, items, hotline, address } = Astro.props;
 
 const {
   data: { title, description },
@@ -48,27 +71,21 @@ const copyrightParts = splitProtectedText(copyrightText);
     </div>
     <div class="md:order-1 mt-16 lg:mt-10 text-center lg:text-left">
       <ul>
-        <li>
-          <a class="active:underline focus:underline hover:underline" href="/get-help">Resources</a>
-        </li>
-        <li>
-          <a class="active:underline focus:underline hover:underline" href="#FIXME">Blog</a>
-        </li>
-        <li>
-          <a class="active:underline focus:underline hover:underline" href="#FIXME">Contact</a>
-        </li>
-        <li>
-          <a class="active:underline focus:underline hover:underline" href="#FIXME">Donate</a>
-        </li>
+        {items && items.map((item) => (
+          <li>
+            <a class="active:underline focus:underline hover:underline" href={item.link.url}>{item.link.label}</a>
+          </li>
+        ))}
       </ul>
       <div class="mt-10 text-center lg:text-left md:order-3">
         <div>
           Helpline:
-          <a class="active:underline focus:underline hover:underline" href="tel:+19568870706">(956) 887-0706</a>
+          <a class="active:underline focus:underline hover:underline" href={`tel:${hotline?.link}`}>{hotline?.number}</a>
         </div>
         <div class="mt-10">
-          <p>P.O. Box 721011</p>
-          <p>McAllen, TX 78504</p>
+          <p>{address?.street1}</p>
+          {address?.street2 && (<p>{address.street2}</p>)}
+          <p>{`${address?.city}, ${address?.state} ${address?.zip}`}</p>
         </div>
       </div>
     </div>

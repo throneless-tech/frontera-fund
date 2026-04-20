@@ -1,15 +1,15 @@
 ---
 
-// Props
-interface Props {
-  text?: string;
-  url?: string;
-}
-
-const { text, url } = Astro.props;
+const { data } = Astro.props;
 
 ---
 
 <div class="bg-blue p-2 text-center text-xl text-dark">
-  <a href="/home-alt">Banner text goes here. If there is a link provided, this will link to a page, internal or external.</a>
+  <div class="container">
+    {data?.link ? (
+      <a href={data.link}>{data.message}</a>
+    ) : (
+      <span>{data.message}</span>
+    )}
+  </div>
 </div>

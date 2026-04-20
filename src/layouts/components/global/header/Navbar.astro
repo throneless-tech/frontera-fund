@@ -6,16 +6,12 @@ import type { NavigationLink } from "@/types";
 import { filteredEnabled } from "@/lib/utils/filteredEnabled";
 import CustomButton from "@/components/CustomButton.astro";
 
-interface Props {
-  isMobile?: boolean;
-}
-
 const config = parseTomlToJson();
 const t = await useTranslations(Astro.currentLocale as string);
 let main = t("headerPrimary") as NavigationLink[];
 main = filteredEnabled(main);
 
-const { isMobile } = Astro.props;
+const { isMobile, items } = Astro.props;
 const { navigationButton } = config.settings;
 ---
 
@@ -23,7 +19,7 @@ const { navigationButton } = config.settings;
   id="nav-menu"
   class:list={["navbar", isMobile && "navbar-mobile"]}
   role="menu">
-  {main.map((menu) => <NavMenuItem isMobile={isMobile} menu={menu} />)}
+  {items?.map((item: object) => <NavMenuItem isMobile={isMobile} menu={item} />)}
   {/* Navigation Button For Small Devices */}
   {
     navigationButton.enable && (

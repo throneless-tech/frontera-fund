@@ -98,24 +98,18 @@ export const inputFieldSchema = z.object({
 
 export const CTASectionSchema = z
   .object({
-    enable: z.boolean().default(false),
-    title: z.string().optional(),
-    list: z.array(
-      z.object({
-        enable: z.boolean().default(false),
-        name: z.string(),
-        description: z.string(),
-        price: z.object({
-          prependValue: z.string(),
-          value: z.string(),
-          appendValue: z.string(),
-        }),
-        features: z.array(z.string()),
-        button,
+    title: z.string(),
+    subtitle: z.string().optional(),
+    image: z
+      .object({
+        url: z.string(),
         alt: z.string(),
-        image: z.string(),
-      }),
-    ),
+        width: z.number(),
+        height: z.number(),
+      })
+      .optional(),
+    linkText: z.string(),
+    linkURL: z.string(),
   })
   .optional();
 
@@ -130,21 +124,9 @@ export const contactFormSchema = z.object({
 });
 
 export const servicesSectionSchema = z
-  .object({
-    enable: z.boolean().default(false).optional(),
-    title: z.string().optional(),
-    sectionDirection: z.enum(["horizontal", "vertical"]).optional(),
-    options: z
-      .object({
-        layout: z.enum(["grid", "accordion"]),
-        appearance: AppearanceEnum,
-        limit: z.union([z.number(), z.literal(false)]),
-        column: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
-        iconPlacement: z.enum(["top", "right"]).optional(),
-      })
-      .partial()
-      .optional(),
-  })
+  .array(
+    z.object({})
+  )
   .optional();
 
 export const clientsSectionSchema = z
@@ -169,25 +151,26 @@ export const clientsSectionSchema = z
   })
   .optional();
 
-export const bannerAgencySectionSchema = z
+export const bannerSchema = z
   .object({
-    enable: z.boolean().default(false).optional(),
-    titleSize: z.enum(["display-1", "display-2", "display-3"]).optional(),
-    title: z.array(z.string()).optional(),
-    badge: z
+    backgroundImage: z
       .object({
-        enable: z.boolean().default(false).optional(),
-        label: z.string().optional(),
-        icon: z.string().optional(),
+        url: z.string(),
+        alt: z.string(),
+        width: z.number(),
+        height: z.number(),
       })
-      .partial()
       .optional(),
+    title: z.string().optional(),
+    subtitle: z.string().optional(),
+    CTA: z.string().optional(),
+    CTALink: z.string().optional(),
   })
   .optional();
 
 export const sectionsSchema = {
   servicesSection: servicesSectionSchema,
   clientsSection: clientsSectionSchema,
-  bannerAgencySection: bannerAgencySectionSchema,
+  banner: bannerSchema,
   CTASection: CTASectionSchema,
 };

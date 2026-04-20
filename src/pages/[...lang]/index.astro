@@ -22,6 +22,7 @@ try {
   const res = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/globals/homepage?depth=2&draft=false&locale=${Astro.currentLocale}&trash=false`)
 
   data = await res?.json()
+  
 } catch (e) {
   err = e;
 }
@@ -32,9 +33,9 @@ if (err) {
 ---
 
 <Base {...page?.data} headerPosition="sticky" hasHeaderDarkBackground={true}>
-  <Banner content={data} />
-  <ServicesSection />
-  <CTASection />
+  <Banner content={data?.hero} />
+  <ServicesSection services={data?.offers} />
+  <CTASection content={data?.CTA} />
   <!-- <Clients /> -->
   <BlogSection />
 </Base>

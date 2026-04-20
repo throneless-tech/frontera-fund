@@ -8,6 +8,7 @@ import type { JSONLDProps } from "@/lib/utils/JsonLdGenerator";
 import HelperButtons from "@/components/utilities/HelperButtons.astro";
 import BreakpointIndicator from "@/components/widgets/BreakpointIndicator.astro";
 import Footer from "@/components/global/Footer.astro";
+import { undefined } from "astro:schema";
 
 interface Props extends JSONLDProps {
   className?: string;
@@ -49,6 +50,24 @@ let props = removeEmptyKeys(Astro.props);
 className = fitToScreen
   ? (className ? className + " " : "") + "fit-to-screen"
   : className;
+
+let data;
+let err;
+
+try {
+  // fetch homepage data
+  const res = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/globals/general?depth=2&draft=false&locale=${Astro.currentLocale}&trash=false`)
+
+  data = await res?.json()
+  
+} catch (e) {
+  err = e;
+}
+
+if (err) {
+  console.log(`An error occurred: ${err}`);
+}
+
 ---
 
 <!doctype html>
@@ -59,15 +78,22 @@ className = fitToScreen
       position={headerPosition}
       hasDarkBackground={hasHeaderDarkBackground}
       hideOffcanvas={hideOffcanvas}
+      banner={data?.banner || undefined}
+      items={data?.navItems}
     />
 
     <main class:list={[className]}>
       <slot />
     </main>
 
-    <Footer footerSpaceTop={footerSpaceTop} />
+    <Footer
+      footerSpaceTop={footerSpaceTop}
+      items={data?.navItems}
+      hotline={data?.hotline}
+      address={data?.address}
+    />
 
-    <HelperButtons />
+    <HelperButtons hotline={data?.hotline} />
     <script>
       // @ts-nocheck
       import AOS from "aos";

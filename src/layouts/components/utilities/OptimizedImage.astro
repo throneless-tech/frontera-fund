@@ -47,7 +47,7 @@ if (!src) {
   throw new Error("No image source provided.");
 }
 
-const normalizedSrc = src.startsWith("/src/assets") ? src : `/src/assets${src}`;
+const normalizedSrc = src.startsWith("/src/assets") ? src : src.startsWith('/api') ? `http://localhost:3000/${src}` : `/src/assets${src}`;
 
 const images = import.meta.glob(
   "/src/assets/images/**/*.{jpeg,jpg,png,webp,svg,gif}",
@@ -57,13 +57,13 @@ const rawSvgs = import.meta.glob("/src/assets/images/**/*.svg", {
   import: "default",
 });
 
-const isValidPath = !!images[normalizedSrc];
+// const isValidPath = !!images[normalizedSrc];
 
-if (!isValidPath) {
-  console.error(
-    `\x1b[31mImage not found - ${normalizedSrc}.\x1b[0m Make sure the image is in the /src/assets/images folder.`,
-  );
-}
+// if (!isValidPath) {
+//   console.error(
+//     `\x1b[31mImage not found - ${normalizedSrc}.\x1b[0m Make sure the image is in the /src/assets/images folder.`,
+//   );
+// }
 
 let SVG;
 if (inlineSvg && normalizedSrc.includes(".svg")) {
@@ -86,7 +86,7 @@ if (inlineSvg && normalizedSrc.includes(".svg")) {
 ---
 
 {
-  isValidPath &&
+  
     (inlineSvg && SVG && normalizedSrc.includes(".svg") ? (
       <Fragment set:html={SVG} />
     ) : (
@@ -94,21 +94,12 @@ if (inlineSvg && normalizedSrc.includes(".svg")) {
       <Image
         style={style}
         alt={alt || ""}
-        width={width}
-        height={height}
+        width={width || 400}
+        height={height || 200}
         formats={formats}
         loading={loading}
         decoding={decoding}
-        src={(() => {
-          try {
-            return images[normalizedSrc]() as Promise<{
-              default: ImageMetadata;
-            }>;
-          } catch (err) {
-            console.error(`Failed to load image module: ${normalizedSrc}`, err);
-            return undefined;
-          }
-        })()}
+        src={normalizedSrc}
         {...{ class: Astro.props.class }}
         {...rest}
       />
