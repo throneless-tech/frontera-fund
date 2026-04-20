@@ -47,7 +47,7 @@ if (!src) {
   throw new Error("No image source provided.");
 }
 
-const normalizedSrc = src.startsWith("/src/assets") ? src : src.startsWith('/api') ? `http://localhost:3000/${src}` : `/src/assets${src}`;
+const normalizedSrc = src.startsWith("/src/assets") ? src : src.startsWith('/api') ? `${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/${src}` : `/src/assets${src}`;
 
 const images = import.meta.glob(
   "/src/assets/images/**/*.{jpeg,jpg,png,webp,svg,gif}",

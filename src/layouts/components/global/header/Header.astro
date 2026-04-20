@@ -30,6 +30,10 @@ const {
   banner,
   items,
 } = Astro.props;
+
+console.log(logoAlternate);
+
+
 ---
 
 <header
@@ -42,7 +46,7 @@ const {
     { "has-sticky-behavior": stickyHeader || position === "fixed" },
     ClassName,
   ]}>
-  {banner && (
+  {banner && banner.message && (
     <Banner data={banner} />
   )}
   <nav class="xl:container-12xl relative max-xl:container">
