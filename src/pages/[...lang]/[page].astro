@@ -6,37 +6,18 @@ import { parseTomlToJson } from "@/lib/utils/tomlUtils";
 import SinglePageLayout from "@/components/SinglePageLayout.astro";
 import extractSlug from "@/lib/utils/extractSlug";
 
-// get static paths for all pages
-export async function getStaticPaths() {
-  // fetch page data
-  const response = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/pages`)
-  const data = await response.json()
-  
-  const paths = await Promise.all(
-    supportedLanguages.map(async (lang) => {
-      const config = parseTomlToJson();
-      const { defaultLanguage, showDefaultLangInUrl } =
-        config.settings.multilingual;
+export const prerender = false;
 
-      const response = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/pages`)
-      const pages = await response.json();
+// fetch page data
+const response = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/pages`)
 
-      // Generate static path entry
-      return pages.docs.map((page: any) => ({
-        params: {
-          page: page.slug,
-        },
-        props: {
-          page,
-        },
-      }));
-    }),
-  );
+const data = await response.json()
 
-  return paths.flat();
-}
+const slug = Astro.url.pathname.replaceAll('/', '');
 
-const { page } = Astro.props;
+const page = data.docs.find((p: any) => p.slug === slug);
+
+if (!page) return Astro.redirect("/404");
 
 ---
 

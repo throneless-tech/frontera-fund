@@ -8,9 +8,7 @@ import CTASection from "@/components/sections/CTASection.astro";
 import ServicesSection from "@/components/sections/ServicesSection.astro";
 import BlogSection from "@/components/sections/BlogSection.astro";
 
-export function getStaticPaths() {
-  return generatePaths();
-}
+export const prerender = false;
 
 const page = await getEntryCTM("homepage", "-index", Astro.currentLocale);
 

@@ -8,6 +8,8 @@ import Font from "../widgets/Font.astro";
 
 const config = parseTomlToJson();
 
+const { title = "", description, meta, canonical } = Astro.props;
+
 ---
 
 <head>
@@ -19,11 +21,11 @@ const config = parseTomlToJson();
   />
   <SEO
     content={{
-      title: Astro.props.title,
-      metaTitle: Astro.props.meta.title,
-      description: Astro.props.description,
-      metaDescription: Astro.props.meta.description,
-      canonical: Astro.props.canonical,
+      title: title || "Frontera Fund",
+      metaTitle: meta?.title || title || "Frontera Fund",
+      description: description,
+      metaDescription: meta?.description || description || "",
+      canonical: canonical,
     }}
     config={config}
   />
@@ -47,23 +49,22 @@ const config = parseTomlToJson();
   }
   <OpenGraph
     content={{
-      title: Astro.props.title,
-      metaTitle: Astro.props.metaTitle,
-      description: Astro.props.description,
-      metaDescription: Astro.props.metaDescription,
-      disableTagline: Astro.props.disableTagline,
+      title: title || "Frontera Fund",
+      metaTitle: meta?.title || title || "Frontera Fund",
+      description: description,
+      metaDescription: meta?.description || description || "",
+      disableTagline: true,
     }}
     config={config}
   />
   <Favicons config={config} />
   <JsonLD
     content={{
-      title: Astro.props.title,
-      metaTitle: Astro.props.metaTitle,
-      description: Astro.props.description,
-      metaDescription: Astro.props.metaDescription,
-      disableTagline: Astro.props.disableTagline,
-      pageType: Astro.props.pageType,
+      title: title || "Frontera Fund",
+      metaTitle: meta?.title || title || "Frontera Fund",
+      description: description,
+      metaDescription: meta?.description || description || "",
+      disableTagline: true,
     }}
   />
 

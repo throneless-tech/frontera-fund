@@ -2,7 +2,7 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import { defineConfig, sessionDrivers } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import remarkParseContent from "./src/lib/utils/remarkParseContent.ts";
 import {
@@ -10,6 +10,7 @@ import {
   reloadOnTomlChange,
 } from "./src/lib/utils/tomlUtils.ts";
 import { enabledLanguages } from "./src/lib/utils/i18nUtils.ts";
+import netlify from "@astrojs/netlify";
 
 const config = parseTomlToJson();
 
@@ -22,7 +23,9 @@ let {
 
 // https://astro.build/config
 export default defineConfig({
-  site: config.site.baseUrl ? config.site.baseUrl : "http://fronterafundrgv.org",
+  site: config.site.baseUrl
+    ? config.site.baseUrl
+    : "http://fronterafundrgv.org",
   trailingSlash: config.site.trailingSlash ? "ignore" : "always",
   i18n: {
     locales: enabledLanguages,
@@ -54,5 +57,11 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss(), reloadOnTomlChange()],
+  },
+  adapter: netlify(),
+  session: {
+    driver: sessionDrivers.redis({
+      url: process.env.REDIS_URL || "",
+    }),
   },
 });
