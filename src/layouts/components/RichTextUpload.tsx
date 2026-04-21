@@ -1,7 +1,6 @@
 import React from "react";
 
 import type { SerializedUploadNode } from "@payloadcms/richtext-lexical";
-import type { FileData, TypeWithID } from "payload";
 
 export type Props = {
   node: SerializedUploadNode;
@@ -10,7 +9,7 @@ export type Props = {
 export const RichTextUpload: React.FC<Props> = (props) => {
   const { node } = props;
 
-  const uploadDocument = node as unknown as { value?: FileData & TypeWithID };
+  const uploadDocument = node as unknown as { value?: any };
   const url = uploadDocument?.value?.url;
 
   /**
