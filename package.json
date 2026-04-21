@@ -38,6 +38,8 @@
     "@astrojs/react": "^4.3.0",
     "@astrojs/sitemap": "^3.4.1",
     "@floating-ui/dom": "^1.7.2",
+    "@payloadcms/richtext-lexical": "^3.83.0",
+    "@payloadcms/sdk": "^3.83.0",
     "@popperjs/core": "^2.11.8",
     "@preline/accordion": "^3.0.0",
     "@preline/collapse": "^3.0.0",

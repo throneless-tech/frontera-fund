@@ -7,6 +7,7 @@ import OpenGraph from "../seo/OpenGraph.astro";
 import Font from "../widgets/Font.astro";
 
 const config = parseTomlToJson();
+
 ---
 
 <head>
@@ -19,9 +20,9 @@ const config = parseTomlToJson();
   <SEO
     content={{
       title: Astro.props.title,
-      metaTitle: Astro.props.metaTitle,
+      metaTitle: Astro.props.meta.title,
       description: Astro.props.description,
-      metaDescription: Astro.props.metaDescription,
+      metaDescription: Astro.props.meta.description,
       canonical: Astro.props.canonical,
     }}
     config={config}

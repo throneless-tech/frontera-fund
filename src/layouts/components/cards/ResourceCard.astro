@@ -5,8 +5,10 @@ import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
 import type { CollectionEntry } from "astro:content";
 
 type Props = {
-  index: string;
-  logo?: string;
+  index?: string;
+  logo?: {
+    url: string,
+  };
   title: string,
   description?: string,
   // translations?: any;
@@ -23,7 +25,6 @@ let {
 
 const t = await useTranslations(Astro.currentLocale as string);
 
-// const isDarkAppearance = options?.appearance === "dark";
 ---
 
 <div
@@ -44,7 +45,7 @@ const t = await useTranslations(Astro.currentLocale as string);
       href={link}
       >
       <OptimizedImage
-        src={logo}
+        src={logo.url}
         alt={`${title} logo.` || "Resource logo."}
         class:list={[
           "h-60 scale-110 object-contain transition duration-500 group-hover:translate-x-2",
