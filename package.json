@@ -35,9 +35,9 @@
   "dependencies": {
     "@astrojs/check": "^0.9.8",
     "@astrojs/mdx": "^5.0.3",
-    "@astrojs/netlify": "^7.0.7",
     "@astrojs/react": "^5.0.3",
     "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/vercel": "^10.0.5",
     "@floating-ui/dom": "^1.7.2",
     "@payloadcms/richtext-lexical": "^3.83.0",
     "@payloadcms/sdk": "^3.83.0",

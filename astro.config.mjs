@@ -10,12 +10,11 @@ import {
   reloadOnTomlChange,
 } from "./src/lib/utils/tomlUtils.ts";
 import { enabledLanguages } from "./src/lib/utils/i18nUtils.ts";
-import netlify from "@astrojs/netlify";
+import vercel from "@astrojs/vercel";
 
 const config = parseTomlToJson();
 
 let {
-  seo: { sitemap: sitemapConfig },
   settings: {
     multilingual: { showDefaultLangInUrl, defaultLanguage },
   },
@@ -26,7 +25,9 @@ export default defineConfig({
   site: config.site.baseUrl
     ? config.site.baseUrl
     : "https://fronterafundrgv.org",
+
   trailingSlash: config.site.trailingSlash ? "ignore" : "always",
+
   i18n: {
     locales: enabledLanguages,
     defaultLocale: defaultLanguage,
@@ -35,19 +36,12 @@ export default defineConfig({
       prefixDefaultLocale: showDefaultLangInUrl,
     },
   },
+
   integrations: [
     react(),
-    // sitemap({
-    //   i18n: {
-    //     defaultLocale: "en",
-    //     locales: {
-    //       en: "en",
-    //       es: "es",
-    //     },
-    //   },
-    // }),
     mdx(),
   ],
+
   markdown: {
     rehypePlugins: [
       [
@@ -67,15 +61,15 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
+
   vite: {
     plugins: [tailwindcss(), reloadOnTomlChange()],
   },
-  adapter: netlify({
-    imageCDN: false,
-    cacheOnDemandPages: true,
-  }),
+
   image: {
     domains: [import.meta.env.PUBLIC_API_URL || 'http://localhost:3000'],
   },
+
   output: "server",
+  adapter: vercel(),
 });
