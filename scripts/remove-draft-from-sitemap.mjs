@@ -197,7 +197,7 @@ async function processSitemaps() {
         sitemapObj.urlset.url = urls.filter((url) => {
           const pathname = new URL(url.loc).pathname;
           return !draftPages.some((draft) =>
-            pathname.includes("/" + draft.slug),
+            pathname.includes("/" + draft.id),
           );
         });
 

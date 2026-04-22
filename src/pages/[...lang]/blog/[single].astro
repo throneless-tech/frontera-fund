@@ -1,60 +1,24 @@
 ---
 import Base from "@/layouts/Base.astro";
-import extractSlug from "@/lib/utils/extractSlug";
-import { getEntryCTM } from "@/lib/customContentLoader.astro";
-import { parseTomlToJson } from "@/lib/utils/tomlUtils";
-import { getCollectionCTM } from "@/lib/customContentLoader.astro";
 import BlogSingle from "@/components/BlogSingle.astro";
 import Breadcrumbs from "@/components/widgets/Breadcrumbs.astro";
-import { supportedLanguages } from "@/lib/utils/i18nUtils";
 
-export async function getStaticPaths() {
-  const paths = await Promise.all(
-    supportedLanguages.map(async (lang) => {
-      const config = parseTomlToJson();
-      const { blogFolder }: { blogFolder: "blog" } =
-        config.settings;
-      const { defaultLanguage, showDefaultLangInUrl } =
-        config.settings.multilingual;
+export const prerender = false;
 
-      const blogIndex = await getEntryCTM(
-        blogFolder,
-        "-index",
-        lang.languageCode,
-      );
+// fetch page data
+const response = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/posts?depth=2&draft=false&locale=${Astro.currentLocale}&trash=false`)
 
-      let blogs = await getCollectionCTM(
-        blogFolder,
-        lang.languageCode,
-      );
+const data = await response.json()
 
-      // If draft true in index.md file frontmatter don't include any page related to this page collection in production
-      if (blogIndex?.data.draft && import.meta.env.PROD) {
-        return [];
-      }
+const slug = Astro.url.pathname.replaceAll('/', '');
 
-      return blogs.map((blog) => ({
-        params: {
-          lang:
-            lang.languageCode === defaultLanguage && !showDefaultLangInUrl
-              ? undefined
-              : lang.languageCode,
-          single: extractSlug(blog).split("/").pop(),
-        },
-        props: {
-          blog,
-        },
-      }));
-    }),
-  );
+const post = data.docs.find((p: any) => p.slug === slug);
 
-  return paths.flat();
-}
+if (!post) return Astro.redirect("/404");
 
-const { blog } = Astro.props;
 ---
 
-<Base {...blog.data} hasHeaderDarkBackground={true}>
+<Base {...post} hasHeaderDarkBackground={true}>
   <Breadcrumbs breadcrumbExcludedPaths={["Blog"]} />
-  <BlogSingle content={blog} />
+  <BlogSingle content={post} />
 </Base>

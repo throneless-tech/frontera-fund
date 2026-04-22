@@ -5,7 +5,6 @@ import { splitProtectedText } from "@/lib/utils/splitProtectedText";
 import SocialComponent from "@/components/widgets/Social.astro";
 import social from "@/config/social.json";
 import { useTranslations } from "@/lib/utils/i18nUtils";
-import { getEntryCTM } from "@/lib/customContentLoader.astro";
 import ContactForm from "../widgets/ContactForm.astro";
 import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
 
@@ -42,14 +41,6 @@ let {
 } = config.settings;
 const { footerSpaceTop = true, items, hotline, address } = Astro.props;
 
-const {
-  data: { title, description },
-} = await getEntryCTM("sections", "call-to-action", Astro.currentLocale);
-
-let { form } = (
-  await getEntryCTM("sections", "contact-section", Astro.currentLocale)
-)?.data;
-
 footerDescription = footerDescription || t("footer.description") || "";
 
 const copyrightText = copyright.text || t("footer.copyright") || "";
@@ -63,7 +54,7 @@ const copyrightParts = splitProtectedText(copyrightText);
     <div class="footer-border text-center md:order-2">
         <OptimizedImage
           src='/images/logo-art.png'
-          alt={title || "Frontera Fund logo."}
+          alt={"Frontera Fund logo."}
           class:list={[
             "h-60 object-contain",
           ]}

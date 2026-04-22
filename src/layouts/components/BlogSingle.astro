@@ -4,51 +4,11 @@ import { markdownify } from "@/lib/utils/textConverter";
 import { useTranslations } from "@/lib/utils/i18nUtils";
 import OptimizedImage from "./utilities/OptimizedImage.astro";
 import PaginationForSingle from "./widgets/PaginationForSingle.astro";
-import { render } from "astro:content";
 import "aos/dist/aos.css";
+import { RichTextComp } from "@/components/Richtext";
 
-let {
-  collection,
-  data: { title, images, information },
-}: {
-  render: any;
-  id: string;
-  collection: string;
-  data: {
-    title: string;
-    images: string[];
-    categories: string[];
-    information: { label: string; value: string }[];
-  };
-} = Astro.props.content;
-
-const t = await useTranslations(Astro.currentLocale as string);
-const { Content } = await render(Astro.props.content);
-
-if (Array.isArray(information)) {
-  information = information.map((item) => {
-    const newItem = { ...item };
-    switch (item.value) {
-      case "date":
-        if (Astro.props.content.data.date) {
-          newItem.value = new Date(
-            Astro.props.content.data.date,
-          ).toLocaleDateString(Astro.currentLocale, {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          });
-        }
-        break;
-      case "categories":
-        if (Astro.props.content.data.categories) {
-          newItem.value = Astro.props.content.data.categories.join(", ");
-        }
-        break;
-    }
-    return newItem;
-  });
-}
+const { content } = Astro.props;
+let { title, date, images, categories, layout } = content;
 ---
 
 <section class="bg-body overflow-hidden pt-16 md:pt-32">
@@ -91,9 +51,9 @@ if (Array.isArray(information)) {
       <div
         class="grid max-w-full grid-cols-1 max-xl:space-y-8 xl:grid-cols-7 xl:gap-x-20">
         {
-          information && Array.isArray(information) && (
+          categories && Array.isArray(categories) && (
             <ul class="space-y-4 xl:order-2 xl:col-span-2">
-              {information.map((item) => (
+              {categories.map((item) => (
                 <li class="w-fit">
                   {item.label && (
                     <span
@@ -113,22 +73,20 @@ if (Array.isArray(information)) {
         <div class="space-y-10 pe-10 xl:col-span-5">
           {title && <h1 class="md:text-display-5" set:html={title} />}
 
-          {
-            Content && (
+
               <div class="prose-styles has-video-modal [&_.image-list-component]:xl:-ms-31.5 [&_.image-list-component]:xl:w-6xl">
-                <Content />
+                <RichTextComp data={layout.richText} />
               </div>
-            )
-          }
+
         </div>
       </div>
       <div class="my-10 flex justify-between border-t pt-10">
-        <PaginationForSingle
+        <!-- <PaginationForSingle
           prevBtnText={t("common.paginationBlogPrev")}
           nextBtnText={t("common.paginationBlogNext")}
           currentPage={Astro.props.content}
           collection={collection}
-        />
+        /> -->
       </div>
     </div>
   </div>

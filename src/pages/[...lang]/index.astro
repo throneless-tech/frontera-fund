@@ -1,8 +1,5 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { generatePaths } from "@/lib/utils/i18nUtils";
-import Clients from "@/components/sections/Clients.astro";
-import { getEntryCTM } from "@/lib/customContentLoader.astro";
 import Banner from "@/components/sections/Banner.astro";
 import CTASection from "@/components/sections/CTASection.astro";
 import ServicesSection from "@/components/sections/ServicesSection.astro";
@@ -10,30 +7,22 @@ import BlogSection from "@/components/sections/BlogSection.astro";
 
 export const prerender = false;
 
-const page = await getEntryCTM("homepage", "-index", Astro.currentLocale);
+// fetch homepage data
+const res = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/globals/homepage?depth=2&draft=false&locale=${Astro.currentLocale}&trash=false`)
 
-let data;
-let err;
+const resPosts = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/posts?depth=1&draft=false&locale=${Astro.currentLocale}&trash=false&limit=4`)
 
-try {
-  // fetch homepage data
-  const res = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/globals/homepage?depth=2&draft=false&locale=${Astro.currentLocale}&trash=false`)
+const data = await res?.json()
 
-  data = await res?.json()
-  
-} catch (e) {
-  err = e;
-}
+const posts = await resPosts?.json()
 
-if (err) {
-  console.log(`An error occurred: ${err}`);
-}
+if (!data) return Astro.redirect("/404");
+
 ---
 
-<Base {...page?.data} headerPosition="sticky" hasHeaderDarkBackground={true}>
+<Base {...data} headerPosition="sticky" hasHeaderDarkBackground={true}>
   <Banner content={data?.hero} />
   <ServicesSection services={data?.offers} />
   <CTASection content={data?.CTA} />
-  <!-- <Clients /> -->
-  <BlogSection />
+  <BlogSection posts={posts.docs}  />
 </Base>

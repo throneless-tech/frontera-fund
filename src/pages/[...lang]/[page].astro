@@ -1,15 +1,11 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getCollectionCTM } from "@/lib/customContentLoader.astro";
-import { supportedLanguages } from "@/lib/utils/i18nUtils";
-import { parseTomlToJson } from "@/lib/utils/tomlUtils";
 import SinglePageLayout from "@/components/SinglePageLayout.astro";
-import extractSlug from "@/lib/utils/extractSlug";
 
 export const prerender = false;
 
 // fetch page data
-const response = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/pages`)
+const response = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/pages?depth=2&draft=false&locale=${Astro.currentLocale}&trash=false`)
 
 const data = await response.json()
 

@@ -1,12 +1,9 @@
 ---
-import { render } from "astro:content";
 import OptimizedImage from "./utilities/OptimizedImage.astro";
+import { RichTextComp } from "@/components/Richtext";
 
-const {
-  data: { title, image },
-} = Astro.props.content;
-
-const { Content } = await render(Astro.props.content);
+const { content } = Astro.props;
+let { title, date, image, categories, layout } = content;
 ---
 
 <section class="overflow-hidden pt-16 md:pt-32">
@@ -28,13 +25,11 @@ const { Content } = await render(Astro.props.content);
         {title && <h1 class="text-h2-sm md:text-h2" set:html={title} />}
 
         <!-- Main Content -->
-        {
-          Content && (
+
             <div class="prose-styles content has-video-modal [&_.image-list-component]:xl:-ms-31.5 [&_.image-list-component]:xl:w-6xl">
-              <Content />
+              <RichTextComp data={layout.richText} />
             </div>
-          )
-        }
+
       </div>
     </div>
   </div>

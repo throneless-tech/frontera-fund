@@ -2,7 +2,7 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, sessionDrivers } from "astro/config";
+import { defineConfig } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import remarkParseContent from "./src/lib/utils/remarkParseContent.ts";
 import {
@@ -25,17 +25,29 @@ let {
 export default defineConfig({
   site: config.site.baseUrl
     ? config.site.baseUrl
-    : "http://fronterafundrgv.org",
+    : "https://fronterafundrgv.org",
   trailingSlash: config.site.trailingSlash ? "ignore" : "always",
   i18n: {
     locales: enabledLanguages,
     defaultLocale: defaultLanguage,
     routing: {
-      redirectToDefaultLocale: showDefaultLangInUrl ? false : true,
+      redirectToDefaultLocale: false,
       prefixDefaultLocale: showDefaultLangInUrl,
     },
   },
-  integrations: [react(), sitemapConfig.enable ? sitemap() : null, mdx()],
+  integrations: [
+    react(),
+    // sitemap({
+    //   i18n: {
+    //     defaultLocale: "en",
+    //     locales: {
+    //       en: "en",
+    //       es: "es",
+    //     },
+    //   },
+    // }),
+    mdx(),
+  ],
   markdown: {
     rehypePlugins: [
       [
@@ -58,10 +70,12 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), reloadOnTomlChange()],
   },
-  adapter: netlify(),
-  session: {
-    driver: sessionDrivers.redis({
-      url: process.env.REDIS_URL || "",
-    }),
+  adapter: netlify({
+    imageCDN: false,
+    cacheOnDemandPages: true,
+  }),
+  image: {
+    domains: [import.meta.env.PUBLIC_API_URL || 'http://localhost:3000'],
   },
+  output: "server",
 });

@@ -1,18 +1,12 @@
 ---
 import formatRelativeDate from "@/lib/utils/formatRelativeDate";
 import { markdownify } from "@/lib/utils/textConverter";
-import { render } from "astro:content";
 import ResourceCard from "@/components/cards/ResourceCard.astro";
 import { RichTextComp } from "@/components/Richtext";
 
 const { content } = Astro.props;
 let { title, date, categories, layout } = content;
 
-// Process markdown content if function is provided
-let Content: any;
-if (typeof content.render === "function") {
-  ({ Content } = await render(content));
-}
 ---
 
 <section class="pt-8">

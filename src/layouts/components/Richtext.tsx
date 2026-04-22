@@ -8,7 +8,6 @@ import {
   type JSXConvertersFunction,
   RichText,
 } from "@payloadcms/richtext-lexical/react";
-import RichTextImage from "./RichTextImage";
 import RichTextUpload from "./RichTextUpload";
 
 const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
@@ -16,11 +15,6 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
   upload: ({ node }) => {
     return <RichTextUpload node={node} />;
   },
-  // blocks: {
-  //   image: ({ node }) => {
-  //     return <RichTextImage node={node} />;
-  //   },
-  // },
 });
 
 export const RichTextComp = ({
