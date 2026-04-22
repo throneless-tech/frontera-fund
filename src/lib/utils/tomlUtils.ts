@@ -24,7 +24,7 @@ export function parseTomlToJson(): any {
 
   try {
     // Read and parse the TOML file
-    const content = fs.readFileSync(process.cwd() + "src/config/config.toml", "utf8");
+    const content = fs.readFileSync(process.cwd().replace('0', '/') + "src/config/config.toml", "utf8");
 
     if (!content) {
       throw new Error(`File not found: src/config/config.toml`);
