@@ -1,11 +1,3 @@
 {
-  "trailingSlash": true,
-  "buildCommand": "sh vercel.sh",
-  "redirects": [
-    {
-      "source": "/sitemap.xml",
-      "destination": "/sitemap-index.xml",
-      "permanent": true
-    }
-  ]
+  "trailingSlash": false
 }
