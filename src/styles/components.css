@@ -366,4 +366,24 @@ footer {
   h1,h2,h3,h4,h5,h6,p {
     margin-bottom: 1em;
   }
+
+  a, a strong {
+    color: var(--color-primary) !important;
+  }
+
+  a:active, a:focus, a:hover, a strong:active, a strong:focus, a strong:hover {
+    text-decoration: underline;
+  }
+
+  > .bg-blue {
+    background-color: var(--color-blue);
+  }
+
+  > .bg-pink {
+    background-color: var(--color-pink);
+  }
+
+  > .bg-salmon {
+    background-color: var(--color-salmon);
+  }
 }

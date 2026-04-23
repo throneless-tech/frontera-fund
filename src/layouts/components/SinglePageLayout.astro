@@ -49,7 +49,7 @@ let { title, date, categories, layout } = content;
       layout &&
         layout.length &&
         layout.map((section: any) => (
-          <div class={`bg-(--color-${section.backgroundColor})`}>
+          <div class={section.backgroundColor ? `bg-${section.backgroundColor}` : ''}>
             {section.blockType == "content" ? (
               <div class="container space-y-10 py-6">
                 <RichTextComp data={section.richText} />
