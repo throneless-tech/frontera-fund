@@ -7,47 +7,29 @@ import PaginationForSingle from "./widgets/PaginationForSingle.astro";
 import "aos/dist/aos.css";
 import { RichTextComp } from "@/components/Richtext";
 
-const { content } = Astro.props;
-let { title, date, images, categories, layout } = content;
+const { post } = Astro.props;
+
+let { title, populatedAuthors, publishedAt, heroImage, categories, content } = post;
+
+const options: any = { year: 'numeric', month: 'long', day: 'numeric' };
+const date = new Date(publishedAt)
+
 ---
 
 <section class="bg-body overflow-hidden pt-16 md:pt-32">
   <div class="container">
     <div class="mx-auto w-full max-w-6xl space-y-10 md:space-y-20">
-      {
-        Array.isArray(images) && images.length > 1 && (
-          <div
-            id="blog-slider"
-            class="swiper"
-            aria-label="Blog image slider">
-            <div class="swiper-wrapper">
-              {images.map((item: string, index: number) => (
-                <div class="swiper-slide h-auto!">
-                  <OptimizedImage
-                    src={item}
-                    alt={`${title} image ${index + 1}`}
-                    class="h-112.5 w-full object-cover md:h-137.5"
-                  />
-                </div>
-              ))}
-            </div>
-            {/* <!-- Left Arrow --> */}
-            <button
-              class="blog-slider-btn-prev hover:bg-accent hover:text-dark absolute start-4 top-1/2 z-10 flex min-h-14 min-w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white transition duration-300 [--swiper-navigation-size:1.25rem]"
-              aria-label="Previous slide">
-              <ReactIcons icon="FaArrowLeftLong" />
-            </button>
-
-            {/* <!-- Right Arrow --> */}
-            <button
-              class="blog-slider-btn-next hover:bg-accent hover:text-dark absolute end-4 top-1/2 z-10 flex min-h-14 min-w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white transition duration-300 [--swiper-navigation-size:1.25rem]"
-              aria-label="Next slide">
-              <ReactIcons icon="FaArrowRightLong" />
-            </button>
-          </div>
-        )
-      }
-
+      {heroImage && (
+        <div class="swiper-slide h-auto!">
+          <OptimizedImage
+            src={heroImage.sizes.medium.url}
+            height={heroImage.sizes.medium.height}
+            width={heroImage.sizes.medium.width}
+            alt={heroImage.alt || ""}
+            class="h-112.5 w-full object-cover md:h-137.5"
+          />
+        </div>
+      )}
       <div
         class="grid max-w-full grid-cols-1 max-xl:space-y-8 xl:grid-cols-7 xl:gap-x-20">
         {
@@ -55,29 +37,33 @@ let { title, date, images, categories, layout } = content;
             <ul class="space-y-4 xl:order-2 xl:col-span-2">
               {categories.map((item) => (
                 <li class="w-fit">
-                  {item.label && (
-                    <span
-                      class="text-dark/80 font-medium"
-                      set:html={item.label}
-                    />
-                  )}
                   <div
                     class="prose-a:underline text-dark font-secondary font-medium capitalize"
-                    set:html={markdownify(item.value, true)}
-                  />
+                    >{item.title}</div>
                 </li>
               ))}
             </ul>
           )
         }
-        <div class="space-y-10 pe-10 xl:col-span-5">
-          {title && <h1 class="md:text-display-5" set:html={title} />}
-
-
-              <div class="prose-styles has-video-modal [&_.image-list-component]:xl:-ms-31.5 [&_.image-list-component]:xl:w-6xl">
-                <RichTextComp data={layout.richText} />
-              </div>
-
+        <div class="space-y-6 pe-10 xl:col-span-5">
+          {title && <h1 class="md:text-display-5">{title}</h1>}
+          {publishedAt && <div class="font-secondary font-medium capitalize">{date.toLocaleDateString("en-US", options)}</div>}
+          {populatedAuthors && populatedAuthors.length ? (
+            <div class="font-secondary font-medium">
+              By
+              {populatedAuthors.map((author:any, index:number) => {
+                if (index === populatedAuthors.length - 1) {
+                  return <span>{author.name}</span>
+                } else {
+                  return <span>{`${author.name}, `}</span>
+                }
+              })}
+            </div>
+          ) : null}
+          <div
+            class="prose-styles has-video-modal [&_.image-list-component]:xl:-ms-31.5 [&_.image-list-component]:xl:w-6xl">
+            <RichTextComp data={content} />
+          </div>
         </div>
       </div>
       <div class="my-10 flex justify-between border-t pt-10">
@@ -96,9 +82,8 @@ let { title, date, images, categories, layout } = content;
       window.addEventListener("load", async function () {
         await import("swiper/swiper-bundle.css");
         const { Swiper } = await import("swiper");
-        const { Autoplay, Pagination, Navigation } = await import(
-          "swiper/modules"
-        );
+        const { Autoplay, Pagination, Navigation } =
+          await import("swiper/modules");
 
         // Initialize banner Swiper
         const blogSlider = document.querySelector(

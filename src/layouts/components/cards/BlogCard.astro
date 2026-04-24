@@ -8,7 +8,13 @@ type Props = {
     slug: string,
     title: string,
     heroImage?: {
-      url: string,
+      sizes: {
+        small: {
+          height: number,
+          url: string,
+          width: number
+        }
+      }
     },
     categories?: [
       {
@@ -20,6 +26,8 @@ type Props = {
       title: 'string',
       image: {
         url: string,
+        height: number,
+        width: number,
       },
       description: string,
     }
@@ -50,7 +58,7 @@ const isDarkAppearance = "dark";
     className,
     "group",
     layout === "grid" && "flex flex-col items-start justify-start",
-    isDarkAppearance ? "text-white" : "text-text-default",
+    "text-text-default",
   ]}
   {...rest}>
   {
@@ -61,7 +69,7 @@ const isDarkAppearance = "dark";
           "bg-dark order-1 inline-block w-full overflow-hidden",
           layout === "grid" && "mb-8",
         ]}
-        href={slug}
+        href={`/blog/${slug}`}
         {...{
           "data-aos":
             index !== undefined &&
@@ -70,8 +78,10 @@ const isDarkAppearance = "dark";
             ],
         }}>
         <OptimizedImage
-          src={heroImage.url}
-          alt={title || "Project image"}
+          src={heroImage.sizes.small.url}
+          width={heroImage.sizes.small.width}
+          height={heroImage.sizes.small.height}
+          alt={title || "An image related to this blog post."}
           class:list={[
             "h-100 scale-110 object-cover mix-blend-soft-light transition duration-500 group-hover:translate-x-2",
           ]}
@@ -102,7 +112,7 @@ const isDarkAppearance = "dark";
     title && (
       <h3 class="text-h3-sm md:text-h3 order-2 leading-snug text-inherit">
         <a
-          href={slug}
+          href={`/blog/${slug}`}
           title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}>
           {title}
         </a>

@@ -1,5 +1,6 @@
 /* prettier-ignore */
-@theme inline {
+
+@theme {
   /* Configure base font size, type scale, and font families in `src/config/fonts.json` */
   --leading-body: 1.8;
   --leading-inherit: inherit;
@@ -33,6 +34,42 @@
   /* Typography */
   --text-base: 1rem;
   --text-base-scale: 1.25;
+}
+
+.bg-blue {
+  background-color: var(--color-blue);
+}
+
+.bg-pink {
+  background-color: var(--color-pink);
+}
+
+.bg-salmon {
+  background-color: var(--color-salmon);
+  color: var(--color-light);
+}
+
+.bg-red {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+}
+
+.bg-purple {
+  background-color: var(--color-accent);
+  color: var(--color-light);
+}
+
+.bg-tan {
+  background-color: var(--color-light);
+}
+
+.bg-yellow {
+  background-color: var(--color-yellow);
+}
+
+@theme inline {
+  /* Typography */
+
   --text-base-sm: calc(var(--text-base) * 0.9);
 
   --text-display-1: calc(var(--text-base) * pow(var(--text-base-scale), 8.8)); /* 115px  */

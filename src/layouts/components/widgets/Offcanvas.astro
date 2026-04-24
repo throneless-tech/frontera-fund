@@ -23,11 +23,11 @@ const {
     "offcanvas hs-overlay fixed z-50 h-full w-full transform bg-white transition-all duration-300",
     direction === "left"
       ? initiallyOpen
-        ? "start-0 top-0 translate-x-0"
-        : "hs-overlay-open:translate-x-0 start-0 top-0 -translate-x-full"
+        ? "inset-s-0 top-0 translate-x-0"
+        : "hs-overlay-open:translate-x-0 inset-s-0 top-0 -translate-x-full"
       : initiallyOpen
-        ? "end-0 top-0 translate-x-0"
-        : "hs-overlay-open:translate-x-0 end-0 top-0 translate-x-full",
+        ? "inset-e-0 top-0 translate-x-0"
+        : "hs-overlay-open:translate-x-0 inset-e-0 top-0 translate-x-full md:translate-x-[150%]",
     size === "sm" && "max-w-lg",
     size === "md" && "max-w-xl",
     size === "lg" && "max-w-2xl",
@@ -37,5 +37,5 @@ const {
   tabindex="-1"
   aria-labelledby={id + "-label"}>
   <slot />
-  <div id={id + "-label"} class="sr-only">Offcanvas</div>
+  <div id={id + "-label"} class="sr-only">Off-canvas menu</div>
 </div>

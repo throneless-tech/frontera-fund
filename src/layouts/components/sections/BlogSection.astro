@@ -48,6 +48,7 @@ const { posts } = Astro.props;
             <BlogCard
               class:list={["space-y-4 overflow-hidden"]}
               content={item}
+              index={`post-${index}`}
             />
           ))
         }

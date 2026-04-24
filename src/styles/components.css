@@ -330,11 +330,11 @@ footer {
     }
 
     &.slash-dark > li:not(:last-child) > *:first-child {
-      @apply after:bg-dark/10;
+      @apply after:bg-dark;
     }
 
     &:not(.slash-dark) > li:not(:last-child) > *:first-child {
-      @apply after:bg-border-dark/15;
+      @apply after:bg-border-dark;
     }
   }
 
@@ -367,23 +367,31 @@ footer {
     margin-bottom: 1em;
   }
 
+  h2 {
+    font-size: 2.8em;
+  }
+
+  h3 {
+    font-size: 2.2em;
+  }
+
+  h4 {
+    font-size: 1.6em;
+  }
+
+  h5 {
+    font-size: 1em;
+  }
+
+  h6 {
+    font-size: 0.7em;
+  }
+
   a, a strong {
     color: var(--color-primary) !important;
   }
 
   a:active, a:focus, a:hover, a strong:active, a strong:focus, a strong:hover {
     text-decoration: underline;
-  }
-
-  > .bg-blue {
-    background-color: var(--color-blue);
-  }
-
-  > .bg-pink {
-    background-color: var(--color-pink);
-  }
-
-  > .bg-salmon {
-    background-color: var(--color-salmon);
   }
 }

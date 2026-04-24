@@ -58,10 +58,10 @@ h6 {
   @apply text-h6 leading-snug;
 }
 
-b,
+/* b,
 strong {
   @apply text-dark/80;
-}
+} */
 
 code {
   @apply after:border-none;

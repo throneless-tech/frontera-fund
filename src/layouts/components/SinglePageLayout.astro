@@ -8,9 +8,8 @@ const { content } = Astro.props;
 let { title, date, categories, layout } = content;
 
 ---
-
 <section class="pt-8">
-  <div class:list={["space-y-10"]}>
+  <div>
     <!-- {
         image && (
           <OptimizedImage
@@ -36,13 +35,13 @@ let { title, date, categories, layout } = content;
 
           {
             categories?.map((category: string) => (
-              <li class="before:bg-dark relative pe-5 before:absolute before:end-0 before:top-1/2 before:h-1 before:w-1 before:-translate-y-1/2 before:rounded-full before:content-['']">
+              <li class="before:bg-dark relative pe-5 before:absolute before:inset-e-0 before:top-1/2 before:h-1 before:w-1 before:-translate-y-1/2 before:rounded-full before:content-['']">
                 {markdownify(category)}
               </li>
             ))
           }
         </ul>
-        {title && <h1 class="text-h2-sm md:text-h2" set:html={title} />}
+        {title && <h1 class="text-h1-sm md:text-h1 mb-8" set:html={title} />}
       </div>
     </div>
     {
@@ -51,7 +50,7 @@ let { title, date, categories, layout } = content;
         layout.map((section: any) => (
           <div class={section.backgroundColor ? `bg-${section.backgroundColor}` : ''}>
             {section.blockType == "content" ? (
-              <div class="container space-y-10 py-6">
+              <div class="container py-6">
                 <RichTextComp data={section.richText} />
               </div>
             ) : section.blockType == "resources" ? (

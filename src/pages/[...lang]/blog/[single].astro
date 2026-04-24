@@ -10,7 +10,7 @@ const response = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://local
 
 const data = await response.json()
 
-const slug = Astro.url.pathname.replaceAll('/', '');
+const slug = Astro.url.pathname.replaceAll('/blog/', '');
 
 const post = data.docs.find((p: any) => p.slug === slug);
 
@@ -20,5 +20,5 @@ if (!post) return Astro.redirect("/404");
 
 <Base {...post} hasHeaderDarkBackground={true}>
   <Breadcrumbs breadcrumbExcludedPaths={["Blog"]} />
-  <BlogSingle content={post} />
+  <BlogSingle post={post} />
 </Base>
