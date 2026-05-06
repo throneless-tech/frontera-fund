@@ -36,10 +36,7 @@ export default defineConfig({
     },
   },
 
-  integrations: [
-    react(),
-    mdx(),
-  ],
+  integrations: [react(), mdx()],
 
   markdown: {
     rehypePlugins: [
@@ -63,10 +60,13 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss(), reloadOnTomlChange()],
+    ssr: {
+      noExternal: ["react-hook-form" /*, 'other-lib-you-need'*/],
+    },
   },
 
   image: {
-    domains: [import.meta.env.PUBLIC_API_URL || 'http://localhost:3000'],
+    domains: [import.meta.env.PUBLIC_API_URL || "http://localhost:3000"],
   },
 
   output: "server",

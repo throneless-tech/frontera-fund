@@ -8,10 +8,22 @@ import {
   type JSXConvertersFunction,
   RichText,
 } from "@payloadcms/richtext-lexical/react";
+import RichTextEmbed from "./RichTextEmbed";
 import RichTextUpload from "./RichTextUpload";
+
+type Embed = {
+  fields: {
+    code: string
+  }
+}
 
 const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
   ...defaultConverters,
+  blocks: {
+    embed: ({ node }: { node: Embed}) => {
+      return <RichTextEmbed node={node.fields.code} />;
+    },
+  },
   upload: ({ node }) => {
     return <RichTextUpload node={node} />;
   },

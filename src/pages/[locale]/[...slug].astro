@@ -1,0 +1,29 @@
+---
+import Base from "@/layouts/Base.astro";
+import SinglePageLayout from "@/components/SinglePageLayout.astro";
+
+export const prerender = false;
+
+// fetch page data
+const response = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/pages?depth=2&draft=false&locale=${Astro.currentLocale}&trash=false`)
+
+const data = await response.json()
+
+let slug = Astro.url.pathname;
+
+if (Astro.currentLocale == "es") {
+  slug = slug.replaceAll('es', '');
+}
+
+slug = slug.replaceAll('/', '');
+console.log(slug);
+
+const page = data.docs.find((p: any) => p.slug === slug);
+
+if (!page) return Astro.redirect("/404");
+
+---
+
+<Base {...page} hasHeaderDarkBackground={true}>
+  <SinglePageLayout content={{ ...page }} />
+</Base>

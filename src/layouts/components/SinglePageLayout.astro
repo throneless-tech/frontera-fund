@@ -1,6 +1,7 @@
 ---
 import formatRelativeDate from "@/lib/utils/formatRelativeDate";
 import { markdownify } from "@/lib/utils/textConverter";
+import { FormBlock } from "@/components/utilities/Form/index.tsx"
 import ResourceCard from "@/components/cards/ResourceCard.astro";
 import { RichTextComp } from "@/components/Richtext";
 
@@ -68,6 +69,8 @@ let { title, date, categories, layout } = content;
                   ))}
                 </div>
               </div>
+            ) : section.blockType == "formBlock" ? (
+              <FormBlock enableIntro={section.enableIntro} id={section.form.id} form={section.form} />
             ) : null}
           </div>
         ))

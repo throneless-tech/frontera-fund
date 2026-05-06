@@ -9,7 +9,14 @@ const response = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://local
 
 const data = await response.json()
 
-const slug = Astro.url.pathname.replaceAll('/', '');
+let slug = Astro.url.pathname;
+
+if (Astro.currentLocale == "es") {
+  slug = slug.replaceAll('es', '');
+}
+
+slug = slug.replaceAll('/', '');
+console.log(slug);
 
 const page = data.docs.find((p: any) => p.slug === slug);
 
