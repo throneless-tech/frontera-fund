@@ -8,15 +8,12 @@ import {
   parseTomlToJson,
   reloadOnTomlChange,
 } from "./src/lib/utils/tomlUtils.ts";
-import { enabledLanguages } from "./src/lib/utils/i18nUtils.ts";
 import vercel from "@astrojs/vercel";
 
 const config = parseTomlToJson();
 
 let {
-  settings: {
-    multilingual: { showDefaultLangInUrl, defaultLanguage },
-  },
+  settings: {},
 } = config;
 
 // https://astro.build/config
@@ -28,11 +25,11 @@ export default defineConfig({
   trailingSlash: config.site.trailingSlash ? "ignore" : "always",
 
   i18n: {
-    locales: enabledLanguages,
-    defaultLocale: defaultLanguage,
+    locales: ["en", "es"],
+    defaultLocale: "en",
     routing: {
       redirectToDefaultLocale: false,
-      prefixDefaultLocale: showDefaultLangInUrl,
+      prefixDefaultLocale: false,
     },
   },
 

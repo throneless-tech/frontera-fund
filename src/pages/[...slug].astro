@@ -1,29 +1,77 @@
 ---
 import Base from "@/layouts/Base.astro";
+import Banner from "@/components/sections/Banner.astro";
+import CTASection from "@/components/sections/CTASection.astro";
+import ServicesSection from "@/components/sections/ServicesSection.astro";
+import BlogSection from "@/components/sections/BlogSection.astro";
 import SinglePageLayout from "@/components/SinglePageLayout.astro";
 
 export const prerender = false;
 
-// fetch page data
-const response = await fetch(`${import.meta.env.PUBLIC_API_URL || "https://localhost:3000" }/api/pages?depth=2&draft=false&locale=${Astro.currentLocale}&trash=false`)
-
-const data = await response.json()
-
 let slug = Astro.url.pathname;
+let loading = true;
+let homepage = false;
+let data;
+let posts;
+let page;
 
-if (Astro.currentLocale == "es") {
-  slug = slug.replaceAll('es', '');
+if (slug === "/") {
+  homepage = true;
+  // fetch homepage data
+  const res = await fetch(
+    `${import.meta.env.PUBLIC_API_URL || "https://localhost:3000"}/api/globals/homepage?depth=2&draft=false&locale=${Astro.currentLocale}&trash=false`,
+  );
+  
+  const resPosts = await fetch(
+    `${import.meta.env.PUBLIC_API_URL || "https://localhost:3000"}/api/posts?depth=1&draft=false&locale=${Astro.currentLocale}&trash=false&limit=4`,
+  );
+  
+  data = await res?.json();
+  
+  posts = await resPosts?.json();
+  
+  loading = false;
+  
+  if (!data) return Astro.redirect("/404");
+} else {
+  // fetch page data
+  const response = await fetch(
+    `${import.meta.env.PUBLIC_API_URL || "https://localhost:3000"}/api/pages?depth=2&draft=false&locale=${Astro.currentLocale}&trash=false`,
+  );
+
+  data = await response.json();
+
+  if (Astro.currentLocale == "es") {
+    slug = slug.replaceAll("es", "");
+  }
+
+  slug = slug.replaceAll("/", "");
+  console.log(slug);
+
+  page = data.docs.find((p: any) => p.slug === slug);
+
+  loading = false;
+
+  if (!page) return Astro.redirect("/404");
 }
-
-slug = slug.replaceAll('/', '');
-console.log(slug);
-
-const page = data.docs.find((p: any) => p.slug === slug);
-
-if (!page) return Astro.redirect("/404");
-
 ---
 
-<Base {...page} hasHeaderDarkBackground={true}>
-  <SinglePageLayout content={{ ...page }} />
-</Base>
+{
+  loading ? (
+    <Base
+      {...data}
+      headerPosition="sticky"
+      hasHeaderDarkBackground={true}></Base>
+  ) : homepage ? (
+    <Base {...data} headerPosition="sticky" hasHeaderDarkBackground={true}>
+      <Banner content={data?.hero} />
+      <ServicesSection services={data?.offers} />
+      <CTASection content={data?.CTA} />
+      {posts ? <BlogSection posts={posts.docs} /> : null}
+    </Base>
+  ) : (
+    <Base {...page} hasHeaderDarkBackground={true}>
+      <SinglePageLayout content={{ ...page }} />
+    </Base>
+  )
+}
