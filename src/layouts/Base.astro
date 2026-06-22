@@ -46,7 +46,7 @@ let props = removeEmptyKeys(Astro.props);
 
 // Conditionally add min-h-[102vh] class to prevent FOUC (flash of unstyled content) while fast navigation
 className = fitToScreen
-  ? (className ? className + " " : "") + "fit-to-screen"
+  ? (className ? className + " " : "") + ""
   : className;
 
 let data;

@@ -1,4 +1,3 @@
-import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
@@ -33,33 +32,30 @@ export default defineConfig({
     },
   },
 
-  integrations: [react(), mdx()],
+  integrations: [react()],
 
-  markdown: {
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          rel: "noopener noreferrer nofollow",
-          target: "_blank",
-        },
-      ],
-    ],
-    remarkPlugins: [remarkParseContent],
+  // markdown: {
+  //   rehypePlugins: [
+  //     [
+  //       rehypeExternalLinks,
+  //       {
+  //         rel: "noopener noreferrer nofollow",
+  //         target: "_blank",
+  //       },
+  //     ],
+  //   ],
+  //   remarkPlugins: [remarkParseContent],
 
-    // Code Highlighter https://github.com/shikijs/shiki
-    shikiConfig: {
-      theme: "light-plus", // https://shiki.style/themes
-      wrap: false,
-    },
-    extendDefaultPlugins: true,
-  },
+  //   // Code Highlighter https://github.com/shikijs/shiki
+  //   shikiConfig: {
+  //     theme: "light-plus", // https://shiki.style/themes
+  //     wrap: false,
+  //   },
+  //   extendDefaultPlugins: true,
+  // },
 
   vite: {
     plugins: [tailwindcss(), reloadOnTomlChange()],
-    ssr: {
-      noExternal: ["react-hook-form" /*, 'other-lib-you-need'*/],
-    },
   },
 
   image: {

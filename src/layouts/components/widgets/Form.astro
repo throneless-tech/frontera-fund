@@ -1,0 +1,30 @@
+---
+import { actions } from "astro:actions";
+
+import { FormBlock } from "@/components/Form"
+
+export const prerender = false; 
+
+const { enableIntro, form, id } = Astro.props;
+
+const result = Astro.getActionResult(actions.submitForm);
+
+
+
+
+---
+
+<!-- {
+  result?.error ? (
+    <p class="error">
+      Unable to submit form. Please contact the fund or try again later.
+    </p>
+  ) : null
+} -->
+  <FormBlock id={id} enableIntro={enableIntro} form={form} client:load />
+  <!-- {
+    form.fields.map((field: { label: string }) => {
+      return <FormBlock enableIntro={enableIntro} form={form} />;
+    })
+  } -->
+  

@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
-    "@astrojs/mdx": "^5.0.3",
-    "@astrojs/react": "^5.0.3",
+    "@astrojs/partytown": "^2.1.7",
+    "@astrojs/react": "^6.0.0",
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/vercel": "^10.0.5",
     "@floating-ui/dom": "^1.7.2",
@@ -49,7 +49,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "accessible-astro-components": "^5.1.2",
     "aos": "^2.3.4",
-    "astro": "^6.1.8",
+    "astro": "^6.4.8",
     "astro-font": "^1.1.0",
     "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
@@ -60,6 +60,7 @@
     "preline": "^3.0.1",
     "radix-ui": "^1.4.3",
     "react": "^19.0.0",
+    "react-datepicker": "^9.1.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.75.0",
     "react-icons": "^5.0.1",
@@ -68,7 +69,7 @@
     "rollup": "^4.60.3",
     "sharp": "0.33.2",
     "smoothscroll-for-websites": "^1.5.1",
-    "swiper": "^11.2.10",
+    "swiper": "^12.1.4",
     "tailwind-merge": "^3.5.0",
     "toml": "^3.0.0",
     "unist-util-visit": "^5.0.0",
@@ -93,5 +94,8 @@
   "resolutions": {
     "sharp": "^0.33.2",
     "@taplo/lib": "0.4.0-alpha.2"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }

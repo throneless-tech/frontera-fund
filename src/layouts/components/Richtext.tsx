@@ -33,6 +33,6 @@ export const RichTextComp = ({
   data,
 }: {
   data: SerializedEditorState<SerializedLexicalNode>;
-}) => {
+}) => {  
   return <RichText converters={jsxConverters} data={data} />;
 };

@@ -67,6 +67,30 @@
   background-color: var(--color-yellow);
 }
 
+.datetime-popper {
+  h2 {
+    font-family: var(--font-primary);
+  }
+
+  .react-datepicker {
+    min-width: 400px;
+  }
+
+  .react-datepicker__month-container {
+    min-width: 300px;
+  }
+
+  .react-datepicker__time-container {
+    min-width: 140px;
+  }
+
+  .react-datepicker__navigation--next, .react-datepicker__navigation--next--with-time {
+    right: 140px! important;
+  }
+
+
+}
+
 @theme inline {
   /* Typography */
 
