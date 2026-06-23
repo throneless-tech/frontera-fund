@@ -1,8 +1,6 @@
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
-import rehypeExternalLinks from "rehype-external-links";
-import remarkParseContent from "./src/lib/utils/remarkParseContent.ts";
 import {
   parseTomlToJson,
   reloadOnTomlChange,
@@ -33,26 +31,6 @@ export default defineConfig({
   },
 
   integrations: [react()],
-
-  // markdown: {
-  //   rehypePlugins: [
-  //     [
-  //       rehypeExternalLinks,
-  //       {
-  //         rel: "noopener noreferrer nofollow",
-  //         target: "_blank",
-  //       },
-  //     ],
-  //   ],
-  //   remarkPlugins: [remarkParseContent],
-
-  //   // Code Highlighter https://github.com/shikijs/shiki
-  //   shikiConfig: {
-  //     theme: "light-plus", // https://shiki.style/themes
-  //     wrap: false,
-  //   },
-  //   extendDefaultPlugins: true,
-  // },
 
   vite: {
     plugins: [tailwindcss(), reloadOnTomlChange()],
