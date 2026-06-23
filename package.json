@@ -17,7 +17,7 @@
     "url": "https://github.com/getastrothemes/folex-lite-astro.git"
   },
   "engines": {
-    "node": ">=22.0.0",
+    "node": ">=24.0.0",
     "npm": ">=9.6.7",
     "pnpm": ">=8.15.5",
     "yarn": ">=1.22.22"
