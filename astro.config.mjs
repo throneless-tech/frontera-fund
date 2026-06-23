@@ -34,6 +34,13 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss(), reloadOnTomlChange()],
+    rollupInputOptions: {
+      output: {
+        manualChunks: {
+          "react-datepicker": ["react-datepicker"],
+        },
+      },
+    },
   },
 
   image: {
