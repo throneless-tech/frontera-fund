@@ -1,4 +1,4 @@
-import React, { useActionState, useState } from "react";
+import React, { useActionState, useEffect, useState } from "react";
 
 import { actions } from "astro:actions";
 import { withState } from "@astrojs/react/actions";
@@ -50,8 +50,25 @@ export const FormBlock: React.FC<
   const [state, action, isPending] = useActionState(
     // actions.submitForm expects more arguments; cast to any to satisfy overload
     withState(actions.submitForm) as any,
-    { data: {key: undefined, message: ""}, error: { key: undefined, message: "" } },
+    {
+      data: { key: undefined, message: "" },
+      error: { key: undefined, message: "" },
+    },
   );
+
+  const [formData, setFormData] = useState(formFromProps.fields);
+
+  useEffect(() => {}, [formData]);
+
+  function handleChange(
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) {
+    const { name, value } = e.target;
+    console.log("handleChange", name, value);
+    setFormData((prev: any) => ({ ...prev, [name]: value }));
+  }
 
   return (
     <div className="container py-8">
@@ -79,22 +96,55 @@ export const FormBlock: React.FC<
             <div className="relative z-2 w-full">
               {formFromProps &&
                 formFromProps.fields &&
-                formFromProps.fields.map((field: any, index: number) => {
-                  const Field: any = (fields as any)[field.blockType]; // type checking
-                  if (Field) {
-                    return (
-                      <React.Fragment key={`form-field-${index}`}>
-                        <div className="mb-4">
-                          <Field form={formFromProps} {...field} />
-                        </div>
-                      </React.Fragment>
-                    );
-                  }
-                  return null;
-                })}
+                formFromProps.fields.map(
+                  (field: any, index: number, array: any[]) => {
+                    const Field: any = (fields as any)[field.blockType]; // type checking
+                    if (Field) {
+                      if (
+                        index > 0 &&
+                        array.some((el) => el.name === field.conditionalName)
+                      ) {
+                        if (
+                          field.conditionalValue ===
+                          formData[field.conditionalName]
+                        ) {
+                          return (
+                            <React.Fragment key={`form-field-${index}`}>
+                              <div className="mb-4">
+                                <Field
+                                  form={formFromProps}
+                                  {...field}
+                                  onChange={handleChange}
+                                />
+                              </div>
+                            </React.Fragment>
+                          );
+                        } else {
+                          return null;
+                        }
+                      }
+                      return (
+                        <React.Fragment key={`form-field-${index}`}>
+                          <div className="mb-4">
+                            <Field
+                              form={formFromProps}
+                              {...field}
+                              onChange={handleChange}
+                            />
+                          </div>
+                        </React.Fragment>
+                      );
+                    }
+                    return null;
+                  },
+                )}
             </div>
-            <button disabled={isPending} type="submit">
-              Sign up
+            <button
+              className="bg-accent rounded px-4 py-2 font-semibold text-white"
+              disabled={isPending}
+              type="submit"
+            >
+              {submitButtonLabel || "Submit"}
             </button>
             {/* <Button
                     className="text-light"

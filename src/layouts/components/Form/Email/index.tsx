@@ -23,9 +23,10 @@ export function Email({ name, defaultValue, errors, label, required, width }: an
         type="text"
         // {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
         required={required}
+        className="bg-white"
       />
 
       {errors && errors[name] && <Error name={name} />}
     </Width>
-  )
+  );
 }

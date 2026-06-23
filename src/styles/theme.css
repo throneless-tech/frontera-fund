@@ -84,11 +84,31 @@
     min-width: 140px;
   }
 
-  .react-datepicker__navigation--next, .react-datepicker__navigation--next--with-time {
-    right: 140px! important;
+  .react-datepicker__navigation--next,
+  .react-datepicker__navigation--next--with-time {
+    right: 140px !important;
+  }
+}
+
+.richtext {
+  h3 {
+    font-size: var(--font-size-3);
+    line-height: var(--font-size-4);
   }
 
+  p {
+    margin-bottom: 1em;
+  }
 
+  ul {
+    list-style: outside disc;
+    margin-bottom: 1em;
+
+    li {
+      left: 1em;
+      position: relative;
+    }
+  }
 }
 
 @theme inline {
@@ -96,12 +116,24 @@
 
   --text-base-sm: calc(var(--text-base) * 0.9);
 
-  --text-display-1: calc(var(--text-base) * pow(var(--text-base-scale), 8.8)); /* 115px  */
-  --text-display-2: calc(var(--text-base) * pow(var(--text-base-scale), 8)); /* 95px  */
-  --text-display-3: calc(var(--text-base) * pow(var(--text-base-scale), 7.25)); /* 80px  */
-  --text-display-4: calc(var(--text-base) * pow(var(--text-base-scale), 6.5)); /* 65px  */
-  --text-display-5: calc(var(--text-base) * pow(var(--text-base-scale), 5.5)); /* 50px  */
-  --text-display-6: calc(var(--text-base) * pow(var(--text-base-scale), 4.5)); /* 40px  */
+  --text-display-1: calc(
+    var(--text-base) * pow(var(--text-base-scale), 8.8)
+  ); /* 115px  */
+  --text-display-2: calc(
+    var(--text-base) * pow(var(--text-base-scale), 8)
+  ); /* 95px  */
+  --text-display-3: calc(
+    var(--text-base) * pow(var(--text-base-scale), 7.25)
+  ); /* 80px  */
+  --text-display-4: calc(
+    var(--text-base) * pow(var(--text-base-scale), 6.5)
+  ); /* 65px  */
+  --text-display-5: calc(
+    var(--text-base) * pow(var(--text-base-scale), 5.5)
+  ); /* 50px  */
+  --text-display-6: calc(
+    var(--text-base) * pow(var(--text-base-scale), 4.5)
+  ); /* 40px  */
 
   --text-h1: calc(var(--text-base) * pow(var(--text-base-scale), 6));
   --text-h2: calc(var(--text-base) * pow(var(--text-base-scale), 5));

@@ -5,7 +5,7 @@ import React from 'react'
 import { Error } from '../Error'
 import { Width } from '../Width'
 
-export function Text({ name, defaultValue, errors, label, required, width }: any) {
+export function Text({ name, defaultValue, errors, label, required, width, onChange }: any) {
 
   return (
     <Width width={width}>
@@ -24,6 +24,7 @@ export function Text({ name, defaultValue, errors, label, required, width }: any
         type="text"
         required={required}
         className="bg-white"
+        onChange={onChange}
       />
       {errors && errors[name] && <Error name={name} />}
     </Width>

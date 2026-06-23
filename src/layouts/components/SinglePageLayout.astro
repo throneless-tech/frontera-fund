@@ -52,7 +52,7 @@ let { title, date, categories, layout } = content;
         layout.map((section: any) => (
           <div class={section.backgroundColor ? `bg-${section.backgroundColor}` : ''}>
             {section.blockType == "content" ? (
-              <div class="container py-6">
+              <div class="richtext container py-6">
                 <RichTextComp data={section.richText} />
               </div>
             ) : section.blockType == "resources" ? (

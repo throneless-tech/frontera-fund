@@ -5,7 +5,7 @@ import React from 'react'
 import { Error } from '../Error'
 import { Width } from '../Width'
 
-export function Textarea({ name, defaultValue, errors, label, required, rows = 3, width }: any) {
+export function Textarea({ name, defaultValue, errors, label, required, rows = 3, width, onChange }: any) {
   return (
     <Width width={width}>
       <Label htmlFor={name}>
@@ -23,9 +23,11 @@ export function Textarea({ name, defaultValue, errors, label, required, rows = 3
         id={name}
         rows={rows}
         required={required}
+        onChange={onChange}
+        className="bg-white"
       />
 
       {errors && errors[name] && <Error name={name} />}
     </Width>
-  )
+  );
 }

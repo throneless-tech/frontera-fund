@@ -5,6 +5,7 @@ const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
   className,
   name,
   type,
+  onChange,
   ...props
 }) => {
   return (
@@ -16,6 +17,7 @@ const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
       )}
       type={type}
       name={name}
+      onChange={onChange}
       {...props}
     />
   )
