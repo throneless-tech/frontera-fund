@@ -75,7 +75,7 @@ export const FormBlock: React.FC<
         )}
         {!hasSubmitted && (
           // <FormProvider {...formMethods}>
-          <form id={formID} action={action} method="post">
+          <form id={formID} action={action}>
             <div className="relative z-2 w-full">
               {formFromProps &&
                 formFromProps.fields &&
