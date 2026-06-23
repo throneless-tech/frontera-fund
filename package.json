@@ -5,7 +5,6 @@
   "description": "A website for Frontera Fund, who offers financial support and a sense of community for those seeking reproductive healthcare in the Rio Grande Valley and Texas border community.",
   "author": "Throneless Tech",
   "license": "SEE LICENSE IN LICENSE.md",
-  "packageManager": "pnpm@8.15.5",
   "private": true,
   "keywords": [
     "astro",
