@@ -33,33 +33,7 @@ export default defineConfig({
   integrations: [react()],
 
   vite: {
-    plugins: [
-      tailwindcss(),
-      reloadOnTomlChange(),
-      {
-        name: "fix-react-optimize-deps",
-        enforce: "pre",
-        config() {
-          return {
-            environments: {
-              client: {
-                optimizeDeps: {
-                  exclude: ["astro/actions/runtime/entrypoints/route.js"],
-                  include: [
-                    "react",
-                    "react/jsx-runtime",
-                    "react/jsx-dev-runtime",
-                    "react-dom",
-                    "react-dom/client",
-                    "@astrojs/react/client.js",
-                  ],
-                },
-              },
-            },
-          };
-        },
-      },
-    ],
+    plugins: [tailwindcss(), reloadOnTomlChange()],
     ssr: {
       noExternal: [
         "@babel",
