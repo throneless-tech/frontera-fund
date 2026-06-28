@@ -33,7 +33,43 @@ export default defineConfig({
   integrations: [react()],
 
   vite: {
-    plugins: [tailwindcss(), reloadOnTomlChange()],
+    plugins: [
+      tailwindcss(),
+      reloadOnTomlChange(),
+      {
+        name: "fix-react-optimize-deps",
+        enforce: "pre",
+        config() {
+          return {
+            environments: {
+              client: {
+                optimizeDeps: {
+                  exclude: ["astro/actions/runtime/entrypoints/route.js"],
+                  include: [
+                    "react",
+                    "react/jsx-runtime",
+                    "react/jsx-dev-runtime",
+                    "react-dom",
+                    "react-dom/client",
+                    "@astrojs/react/client.js",
+                  ],
+                },
+              },
+            },
+          };
+        },
+      },
+    ],
+    ssr: {
+      noExternal: [
+        "@babel",
+        "@payloadcms/richtext-lexical",
+        "babel-plugin-macros",
+        "lucide-react",
+        "radix-ui",
+        "react-datepicker",
+      ],
+    },
     rollupInputOptions: {
       output: {
         manualChunks: {

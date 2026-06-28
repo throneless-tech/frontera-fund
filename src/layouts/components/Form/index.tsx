@@ -4,6 +4,7 @@ import { actions } from "astro:actions";
 import { withState } from "@astrojs/react/actions";
 import { RichTextComp } from "@/components/Richtext";
 import { fields } from "./fields.js";
+import { preview } from "astro";
 
 export type Value = unknown;
 
@@ -58,16 +59,45 @@ export const FormBlock: React.FC<
 
   const [formData, setFormData] = useState(formFromProps.fields);
 
-  useEffect(() => {}, [formData]);
+  useEffect(() => {
+    console.log("formData in useeffect:", formData);
+  }, [formData]);
 
   function handleChange(
     e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      | HTMLInputElement
+      | (HTMLTextAreaElement & { checked?: boolean })
+      | (HTMLSelectElement & { checked?: boolean })
     >,
+    elName: string,
   ) {
-    const { name, value } = e.target;
-    console.log("handleChange", name, value);
-    setFormData((prev: any) => ({ ...prev, [name]: value }));
+    console.log('here.......');
+    if (e.target) {
+      const { id, name, value } = e.target;
+      const field = formFromProps.fields.find((f: any) => f.name === name);
+      console.log("handleChange input: ", name, value);
+      if (field && field.blockType === "checkbox") {
+        setFormData((prev: any) => [...prev]);
+      } else {
+        console.log("formData is!!!!", id, name, value);
+
+        // const newData = formData.findIndex((f: any) => f.id == field.id)
+        
+        // console.log(newData);
+
+        
+        
+
+        // setFormData((prev: any) => [...prev, formData[newData] = {...field, value: value}]);
+      }
+    } else if (typeof e === "string") {
+      const value = e;
+      console.log("handleChange of select: ", elName, value);
+      // setFormData((prev: any) => ({ ...prev, [name]: value }));
+    } else {
+      console.log("handleChange e is:::::", e);
+      // setFormData((prev: any) => ({ ...prev, [name]: e }));
+    }
   }
 
   return (
@@ -114,7 +144,10 @@ export const FormBlock: React.FC<
                                 <Field
                                   form={formFromProps}
                                   {...field}
-                                  onChange={handleChange}
+                                  onChange={(e: any) => {
+                                    e.preventDefault();
+                                    handleChange(e, field.name);
+                                  }}
                                 />
                               </div>
                             </React.Fragment>
@@ -129,7 +162,10 @@ export const FormBlock: React.FC<
                             <Field
                               form={formFromProps}
                               {...field}
-                              onChange={handleChange}
+                              onChange={(e: any) => {
+                                e.preventDefault();
+                                handleChange(e, field.name);
+                              }}
                             />
                           </div>
                         </React.Fragment>

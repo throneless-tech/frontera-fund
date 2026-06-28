@@ -5,10 +5,11 @@ import * as SelectPrimitive from "@radix-ui/react-select";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "@/helpers/ui";
 
-const Select: React.FC<React.ComponentProps<typeof SelectPrimitive.Root>> = (
-  props,
-) => {
-  return <SelectPrimitive.Root data-slot="select" {...props} />;
+const Select: React.FC<React.ComponentProps<typeof SelectPrimitive.Root>> = ({
+  onValueChange,
+  ...props
+}: React.ComponentProps<typeof SelectPrimitive.Root>) => {
+  return <SelectPrimitive.Root data-slot="select" onValueChange={onValueChange} {...props} />;
 };
 
 const SelectGroup: React.FC<
@@ -25,7 +26,7 @@ const SelectValue: React.FC<
 
 const SelectTrigger: React.FC<
   React.ComponentProps<typeof SelectPrimitive.Trigger>
-> = ({ children, className, ...props }) => {
+> = ({ children, className,...props }) => {
   return (
     <>
       <SelectPrimitive.Trigger

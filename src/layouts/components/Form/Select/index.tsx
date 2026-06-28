@@ -11,7 +11,7 @@ import React from 'react'
 import { Error } from '../Error'
 import { Width } from '../Width'
 
-export function Select({ name, control, errors, label, options, required, width, defaultValue }: any) {
+export function Select({ name, control, errors, label, onChange, options, required, width, defaultValue }: any) {
   return (
     <Width width={width}>
       <Label htmlFor={name}>
@@ -22,7 +22,7 @@ export function Select({ name, control, errors, label, options, required, width,
           </span>
         )}
       </Label>
-      <SelectComponent>
+      <SelectComponent onValueChange={onChange}>
         <SelectTrigger className="w-full bg-white" id={name}>
           <SelectValue />
         </SelectTrigger>
