@@ -17,14 +17,14 @@ type Embed = {
   }
 }
 
-const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
+const jsxConverters: JSXConvertersFunction = ({ defaultConverters }: {defaultConverters: any}) => ({
   ...defaultConverters,
   blocks: {
     embed: ({ node }: { node: Embed}) => {
       return <RichTextEmbed node={node.fields.code} />;
     },
   },
-  upload: ({ node }) => {
+  upload: ({ node }: { node: any}) => {
     return <RichTextUpload node={node} />;
   },
 });

@@ -1,11 +1,15 @@
+import React from 'react'
+import { useFormContext } from "react-hook-form";
+
 import { Checkbox as CheckboxUi } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
-import React from 'react'
 
 import { Error } from '../Error'
 import { Width } from '../Width'
 
-export function Checkbox({ name, defaultValue, errors, label, required, width }: any) {
+export function Checkbox({ name, defaultValue, errors, label, register,required, width }: any) {
+    const props = register(name, { required: required });
+    const { setValue } = useFormContext();
 
   return (
     <Width width={width}>
@@ -13,6 +17,10 @@ export function Checkbox({ name, defaultValue, errors, label, required, width }:
         <CheckboxUi
           defaultChecked={defaultValue}
           id={name}
+          {...props}
+          onCheckedChange={(checked) => {
+            setValue(props.name, checked);
+          }}
         />
         <Label htmlFor={name}>
           {required && (
@@ -25,5 +33,5 @@ export function Checkbox({ name, defaultValue, errors, label, required, width }:
       </div>
       {errors && errors[name] && <Error name={name} />}
     </Width>
-  )
+  );
 }

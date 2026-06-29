@@ -4,7 +4,7 @@ import { Label } from '@/components/ui/label'
 
 import { Error } from '../Error'
 import { Width } from '../Width'
-export function Number({ name, defaultValue, errors, label, required, width }: any) {
+export function Number({ name, defaultValue, errors, label, register, required, width }: any) {
   return (
     <Width width={width}>
       <Label htmlFor={name}>
@@ -12,7 +12,8 @@ export function Number({ name, defaultValue, errors, label, required, width }: a
 
         {required && (
           <span className="required">
-           {' '} * <span className="sr-only">(required)</span>
+            {" "}
+            * <span className="sr-only">(required)</span>
           </span>
         )}
       </Label>
@@ -22,8 +23,9 @@ export function Number({ name, defaultValue, errors, label, required, width }: a
         type="number"
         required={required}
         className="bg-white"
+        {...register(name, { required })}
       />
-      {errors && errors[name] && <Error name={name} />}
+      {errors[name] && <Error name={name} />}
     </Width>
   );
 }

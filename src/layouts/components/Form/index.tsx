@@ -4,7 +4,6 @@ import { actions } from "astro:actions";
 import { withState } from "@astrojs/react/actions";
 import { RichTextComp } from "@/components/Richtext";
 import { fields } from "./fields.js";
-import { preview } from "astro";
 
 import { useForm, type SubmitHandler } from "react-hook-form";
 
@@ -49,23 +48,32 @@ export const FormBlock: React.FC<
     } = {},
   } = props;
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) =>
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   watch,
+  //   formState: { errors },
+  // } = useForm<Inputs>();
+
+
+    const formMethods = useForm({
+      defaultValues: formFromProps.fields,
+    });
+
+    const {
+      control,
+      formState: { errors },
+      handleSubmit,
+      register,
+      watch,
+    } = formMethods;
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    setHasSubmitted(true);
     console.log("react hook form: ", data);
+  }
 
-  const name = watch("example");
-
-  useEffect(() => {
-    console.log('watch is: ', name);
-    
-  })
-
-
+  const allFields = watch()
 
   const [isLoading, setIsLoading] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState<boolean>();
@@ -73,20 +81,23 @@ export const FormBlock: React.FC<
     { status?: string; message: string } | undefined
   >();
 
-  const [state, action, isPending] = useActionState(
-    // actions.submitForm expects more arguments; cast to any to satisfy overload
-    withState(actions.submitForm) as any,
-    {
-      data: { key: undefined, message: "" },
-      error: { key: undefined, message: "" },
-    },
-  );
+  // const [state, action, isPending] = useActionState(
+  //   // actions.submitForm expects more arguments; cast to any to satisfy overload
+  //   withState(actions.submitForm) as any,
+  //   {
+  //     data: { key: undefined, message: "" },
+  //     error: { key: undefined, message: "" },
+  //   },
+  // );
 
   const [formData, setFormData] = useState(formFromProps.fields);
 
   useEffect(() => {
-    console.log("formData in useeffect:", formData);
-  }, [formData]);
+
+  }, [allFields]);
+
+  useEffect(() => {
+  }, [isLoading, hasSubmitted, formData]);
 
   return (
     <div className="container py-8">
@@ -109,17 +120,63 @@ export const FormBlock: React.FC<
           <div>{`${error.status || "500"}: ${error.message || ""}`}</div>
         )}
         {!hasSubmitted && (
-            <form onSubmit={handleSubmit(onSubmit)}>
-              {/* register your input into the hook by invoking the "register" function */}
-              <input defaultValue="test" {...register("example")} />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="relative z-2 w-full">
+              {formFromProps &&
+                formFromProps.fields &&
+                formFromProps.fields.map(
+                  (field: any, index: number, array: any[]) => {
+                    const Field: any = (fields as any)[field.blockType]; // type checking
 
-              {/* include validation with required or other standard HTML validation rules */}
-              <input {...register("exampleRequired", { required: true })} />
-              {/* errors will return when field validation fails  */}
-              {errors.exampleRequired && <span>This field is required</span>}
-
-              <input type="submit" />
-            </form>
+                    if (Field) {
+                      if (field.conditionalName) {
+                        if (field.conditionalValue && allFields[field.conditionalName] == field.conditionalValue) {
+                          return (
+                            <React.Fragment key={`form-field-${index}`}>
+                              <div className="mb-4">
+                                <Field
+                                  form={formFromProps}
+                                  {...field}
+                                  {...formMethods}
+                                  control={control}
+                                  errors={errors}
+                                  register={register}
+                                />
+                              </div>
+                            </React.Fragment>
+                          );
+                        } else {
+                          return null;
+                        }
+                      } else {
+                        return (
+                          <React.Fragment key={`form-field-${index}`}>
+                            <div className="mb-4">
+                              <Field
+                                form={formFromProps}
+                                {...field}
+                                {...formMethods}
+                                control={control}
+                                errors={errors}
+                                register={register}
+                              />
+                            </div>
+                          </React.Fragment>
+                        );
+                      }
+                    }
+                    return null;
+                  },
+                )}
+            </div>
+            <button
+              className="bg-accent rounded px-4 py-2 font-semibold text-white"
+              // disabled={isPending}
+              type="submit"
+            >
+              {submitButtonLabel || "Submit"}
+            </button>
+          </form>
         )}
       </div>
     </div>

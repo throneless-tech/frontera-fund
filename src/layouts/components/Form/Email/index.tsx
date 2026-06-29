@@ -5,7 +5,7 @@ import React from 'react'
 import { Error } from '../Error'
 import { Width } from '../Width'
 
-export function Email({ name, defaultValue, errors, label, required, width }: any) {
+export function Email({ name, defaultValue, errors, label, register, required, width }: any) {
   return (
     <Width width={width}>
       <Label htmlFor={name}>
@@ -21,7 +21,7 @@ export function Email({ name, defaultValue, errors, label, required, width }: an
         defaultValue={defaultValue}
         id={name}
         type="text"
-        // {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
+        {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
         required={required}
         className="bg-white"
       />

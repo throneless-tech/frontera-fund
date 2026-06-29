@@ -5,7 +5,7 @@ import React from 'react'
 import { Error } from '../Error'
 import { Width } from '../Width'
 
-export function Text({ name, defaultValue, errors, label, required, width, onChange }: any) {
+export function Text({ name, defaultValue, errors, label, register, required, width }: any) {
 
   return (
     <Width width={width}>
@@ -14,7 +14,8 @@ export function Text({ name, defaultValue, errors, label, required, width, onCha
 
         {required && (
           <span className="required">
-            {' '}*<span className="sr-only">(required)</span>
+            {" "}
+            *<span className="sr-only">(required)</span>
           </span>
         )}
       </Label>
@@ -24,9 +25,9 @@ export function Text({ name, defaultValue, errors, label, required, width, onCha
         type="text"
         required={required}
         className="bg-white"
-        onChange={onChange}
+        {...register(name, { required })}
       />
-      {errors && errors[name] && <Error name={name} />}
+      {errors[name] && <Error name={name} />}
     </Width>
   );
 }

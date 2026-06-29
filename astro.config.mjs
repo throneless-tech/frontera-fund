@@ -34,23 +34,16 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss(), reloadOnTomlChange()],
-    ssr: {
-      noExternal: [
-        "@babel",
-        "@payloadcms/richtext-lexical",
-        "babel-plugin-macros",
-        "lucide-react",
-        "radix-ui",
-        "react-datepicker",
-      ],
-    },
-    rollupInputOptions: {
+    rolldownOptions: {
       output: {
         manualChunks: {
           "react-datepicker": ["react-datepicker"],
         },
       },
     },
+    // ssr: {
+    //   external: true
+    // }
   },
 
   image: {
