@@ -40,6 +40,7 @@
     disallow = [
       "/_astro/",
       "/cdn-cgi/",
+      "/admin/",
     ] # Disallow specific paths (e.g., "/_astro/", "/cdn-cgi/")
 
   [seo.sitemap]

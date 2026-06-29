@@ -1,5 +1,6 @@
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
+import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import {
   parseTomlToJson,
@@ -30,7 +31,7 @@ export default defineConfig({
     },
   },
 
-  integrations: [react()],
+  integrations: [react(), sitemap()],
 
   vite: {
     plugins: [tailwindcss(), reloadOnTomlChange()],
@@ -41,9 +42,6 @@ export default defineConfig({
         },
       },
     },
-    // ssr: {
-    //   external: true
-    // }
   },
 
   image: {

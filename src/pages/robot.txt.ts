@@ -1,8 +1,11 @@
+import disallowedPages from "@/lib/utils/disallowedPages";
 import { parseTomlToJson } from "@/lib/utils/tomlUtils";
 import type { APIRoute } from "astro";
 const config = parseTomlToJson();
 
 const { enable, disallow } = config.seo.robotsTxt;
+
+const disallowedFromCMS = await disallowedPages();
 
 const getRobotsTxt = (
   sitemapURL: URL,
@@ -15,6 +18,7 @@ Allow: /
 
 # Disallowed pages
 ${disallow.map((item: string) => `Disallow: ${item}`).join("\n")}
+${disallowedFromCMS.map((item: string) => `Disallow: ${item}`).join("\n")}
 
 # Sitemap location
 Sitemap: ${sitemapURL.href}
