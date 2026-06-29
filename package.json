@@ -38,6 +38,7 @@
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/vercel": "^11.0.0",
     "@floating-ui/dom": "^1.7.6",
+    "@payloadcms/live-preview-react": "^3.85.1",
     "@payloadcms/richtext-lexical": "^3.85.1",
     "@payloadcms/sdk": "^3.83.0",
     "@popperjs/core": "^2.11.8",
