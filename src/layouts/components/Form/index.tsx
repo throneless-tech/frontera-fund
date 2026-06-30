@@ -6,6 +6,7 @@ import { RichTextComp } from "@/components/Richtext";
 import { fields } from "./fields.js";
 
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { id } from "zod/v4/locales";
 
 type Inputs = {
   example: string;
@@ -55,25 +56,65 @@ export const FormBlock: React.FC<
   //   formState: { errors },
   // } = useForm<Inputs>();
 
+  const formMethods = useForm({
+    defaultValues: formFromProps.fields,
+  });
 
-    const formMethods = useForm({
-      defaultValues: formFromProps.fields,
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    register,
+    watch,
+  } = formMethods;
+
+  const formatData = (data: any) => {
+    console.log("data is!!!!!!!!!!!!!! ", data);
+
+    const formattedData = Object.keys(data).map((key) => {
+      return {
+        field: key,
+        value: data[key]
+      }
     });
 
-    const {
-      control,
-      formState: { errors },
-      handleSubmit,
-      register,
-      watch,
-    } = formMethods;
+    return formattedData;
+  };
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    setHasSubmitted(true);
-    console.log("react hook form: ", data);
-  }
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const formattedData = formatData(data);
 
-  const allFields = watch()
+    try {
+      const req = await fetch(
+        `${import.meta.env.PUBLIC_API_URL || "https://localhost:3000"}/api/form-submissions`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            form: formFromProps.id,
+            submissionData: formattedData,
+          }),
+        },
+      );
+      const res = await req.json();
+
+      if (res.errors) {
+        setError(res.errors[0]);
+      } else {
+        setError(undefined);
+        setHasSubmitted(true);
+      }
+
+      return res;
+    } catch (e: any) {
+      setError(e);
+    }
+  };
+
+  const allFields = watch();
 
   const [isLoading, setIsLoading] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState<boolean>();
@@ -93,18 +134,17 @@ export const FormBlock: React.FC<
   const [formData, setFormData] = useState(formFromProps.fields);
 
   useEffect(() => {
-
+    console.log(formFromProps);
   }, [allFields]);
 
-  useEffect(() => {
-  }, [isLoading, hasSubmitted, formData]);
+  useEffect(() => {}, [isLoading, hasSubmitted, formData]);
 
   return (
     <div className="container py-8">
       <div
         className={[
           "flex flex-col",
-          hasSubmitted && "h-[80vh] items-center justify-center",
+          hasSubmitted && "h-[20vh] items-center justify-center",
         ]
           .filter(Boolean)
           .join(" ")}
@@ -130,7 +170,11 @@ export const FormBlock: React.FC<
 
                     if (Field) {
                       if (field.conditionalName) {
-                        if (field.conditionalValue && allFields[field.conditionalName] == field.conditionalValue) {
+                        if (
+                          field.conditionalValue &&
+                          allFields[field.conditionalName] ==
+                            field.conditionalValue
+                        ) {
                           return (
                             <React.Fragment key={`form-field-${index}`}>
                               <div className="mb-4">
