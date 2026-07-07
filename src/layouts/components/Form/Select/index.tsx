@@ -38,7 +38,7 @@ export function Select(props: any) {
       </Label>
       <Controller
         control={control}
-        defaultValue={defaultValue || ""}
+        defaultValue={options[0].value}
         name={name}
         render={({ field: { onChange, value } }) => {
           const controlledValue = options.find((t: any) => t.value === value);

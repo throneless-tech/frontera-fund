@@ -1,12 +1,9 @@
 import React, { useActionState, useEffect, useState } from "react";
-
-import { actions } from "astro:actions";
-import { withState } from "@astrojs/react/actions";
+import { ErrorBoundary } from "react-error-boundary";
 import { RichTextComp } from "@/components/Richtext";
 import { fields } from "./fields.js";
 
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { id } from "zod/v4/locales";
 
 type Inputs = {
   example: string;
@@ -71,14 +68,25 @@ export const FormBlock: React.FC<
   const formatData = (data: any) => {
     console.log("data is!!!!!!!!!!!!!! ", data);
 
-    const formattedData = Object.keys(data).map((key) => {
-      return {
-        field: key,
-        value: data[key]
-      }
+    const dataArray: Array<any> = [];
+
+    const formattedData = formFromProps.fields.map((field: any) => {
+      return Object.keys(data).map((key) => {
+        console.log(field.name, key);
+
+        if (field.name === key) {
+          dataArray.push({
+            field: key,
+            value: data[key] || "",
+            sfName: field.sfName || "",
+          }); 
+        }
+      });
     });
 
-    return formattedData;
+    console.log("formatted data+++++++++++++++++++ ", dataArray);
+
+    return dataArray;
   };
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -122,59 +130,69 @@ export const FormBlock: React.FC<
     { status?: string; message: string } | undefined
   >();
 
-  // const [state, action, isPending] = useActionState(
-  //   // actions.submitForm expects more arguments; cast to any to satisfy overload
-  //   withState(actions.submitForm) as any,
-  //   {
-  //     data: { key: undefined, message: "" },
-  //     error: { key: undefined, message: "" },
-  //   },
-  // );
+  useEffect(() => {}, [allFields]);
 
-  const [formData, setFormData] = useState(formFromProps.fields);
-
-  useEffect(() => {
-    console.log(formFromProps);
-  }, [allFields]);
-
-  useEffect(() => {}, [isLoading, hasSubmitted, formData]);
+  useEffect(() => {}, [isLoading, hasSubmitted]);
 
   return (
-    <div className="container py-8">
-      <div
-        className={[
-          "flex flex-col",
-          hasSubmitted && "h-[20vh] items-center justify-center",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      >
-        {enableIntro && introContent && !hasSubmitted && (
-          <RichTextComp data={introContent} />
-        )}
-        {!isLoading && hasSubmitted && confirmationType === "message" && (
-          <RichTextComp data={confirmationMessage} />
-        )}
-        {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
-        {error && (
-          <div>{`${error.status || "500"}: ${error.message || ""}`}</div>
-        )}
-        {!hasSubmitted && (
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="relative z-2 w-full">
-              {formFromProps &&
-                formFromProps.fields &&
-                formFromProps.fields.map(
-                  (field: any, index: number, array: any[]) => {
-                    const Field: any = (fields as any)[field.blockType]; // type checking
+    <ErrorBoundary
+      fallbackRender={() => (
+        <p>⚠️ Something went wrong. Please reload the page and try again.</p>
+      )}
+    >
+      <div className="container py-8">
+        <div
+          className={[
+            "flex flex-col",
+            hasSubmitted && "h-[20vh] items-center justify-center",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          {enableIntro && introContent && !hasSubmitted && (
+            <RichTextComp data={introContent} />
+          )}
+          {!isLoading && hasSubmitted && confirmationType === "message" && (
+            <RichTextComp data={confirmationMessage} />
+          )}
+          {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
+          {error && (
+            <div className="text-primary font-semibold">{`${error.status || "500"}: ${error.message || ""}`}</div>
+          )}
+          {!hasSubmitted && (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="relative z-2 w-full">
+                {formFromProps &&
+                  formFromProps.fields &&
+                  formFromProps.fields.map(
+                    (field: any, index: number, array: any[]) => {
+                      const Field: any = (fields as any)[field.blockType]; // type checking
 
-                    if (Field) {
-                      if (field.conditionalName) {
-                        if (
-                          field.conditionalValue &&
-                          allFields[field.conditionalName] ==
-                            field.conditionalValue
-                        ) {
+                      if (Field) {
+                        if (field.conditionalName) {
+                          if (
+                            field.conditionalValue &&
+                            allFields[field.conditionalName] ==
+                              field.conditionalValue
+                          ) {
+                            return (
+                              <React.Fragment key={`form-field-${index}`}>
+                                <div className="mb-4">
+                                  <Field
+                                    form={formFromProps}
+                                    {...field}
+                                    {...formMethods}
+                                    control={control}
+                                    errors={errors}
+                                    register={register}
+                                  />
+                                </div>
+                              </React.Fragment>
+                            );
+                          } else {
+                            return null;
+                          }
+                        } else {
                           return (
                             <React.Fragment key={`form-field-${index}`}>
                               <div className="mb-4">
@@ -189,40 +207,23 @@ export const FormBlock: React.FC<
                               </div>
                             </React.Fragment>
                           );
-                        } else {
-                          return null;
                         }
-                      } else {
-                        return (
-                          <React.Fragment key={`form-field-${index}`}>
-                            <div className="mb-4">
-                              <Field
-                                form={formFromProps}
-                                {...field}
-                                {...formMethods}
-                                control={control}
-                                errors={errors}
-                                register={register}
-                              />
-                            </div>
-                          </React.Fragment>
-                        );
                       }
-                    }
-                    return null;
-                  },
-                )}
-            </div>
-            <button
-              className="bg-accent rounded px-4 py-2 font-semibold text-white"
-              // disabled={isPending}
-              type="submit"
-            >
-              {submitButtonLabel || "Submit"}
-            </button>
-          </form>
-        )}
+                      return null;
+                    },
+                  )}
+              </div>
+              <button
+                className="bg-accent rounded px-4 py-2 font-semibold text-white"
+                // disabled={isPending}
+                type="submit"
+              >
+                {submitButtonLabel || "Submit"}
+              </button>
+            </form>
+          )}
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 };

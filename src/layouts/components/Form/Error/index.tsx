@@ -7,9 +7,12 @@ export function Error({ name }: { name: string }) {
   const {
     formState: { errors },
   } = useFormContext()
+
+  console.log('errors: ', errors);
+  
   return (
     <div className="mt-2 text-red-500 text-sm">
-      {(errors && (errors[name]?.message as string)) || 'This field is required'}
+      {errors[name]?.message as string || 'This field is required'}
     </div>
   )
 }
