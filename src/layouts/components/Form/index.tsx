@@ -66,8 +66,6 @@ export const FormBlock: React.FC<
   } = formMethods;
 
   const formatData = (data: any) => {
-    console.log("data is!!!!!!!!!!!!!! ", data);
-
     const dataArray: Array<any> = [];
 
     const formattedData = formFromProps.fields.map((field: any) => {
@@ -83,8 +81,6 @@ export const FormBlock: React.FC<
         }
       });
     });
-
-    console.log("formatted data+++++++++++++++++++ ", dataArray);
 
     return dataArray;
   };
