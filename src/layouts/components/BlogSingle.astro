@@ -47,7 +47,7 @@ const date = new Date(publishedAt)
           {publishedAt && <div class="font-secondary font-medium capitalize">{date.toLocaleDateString("en-US", options)}</div>}
           {populatedAuthors && populatedAuthors.length ? (
             <div class="font-secondary font-medium">
-              By
+              By{' '}
               {populatedAuthors.map((author:any, index:number) => {
                 if (index === populatedAuthors.length - 1) {
                   return <span>{author.name}</span>

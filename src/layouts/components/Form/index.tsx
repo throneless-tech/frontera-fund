@@ -70,8 +70,6 @@ export const FormBlock: React.FC<
 
     const formattedData = formFromProps.fields.map((field: any) => {
       return Object.keys(data).map((key) => {
-        console.log(field.name, key);
-
         if (field.name === key) {
           dataArray.push({
             field: key,
