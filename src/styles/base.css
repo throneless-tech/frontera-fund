@@ -21,13 +21,21 @@ body > main:not(:has(section.cta-section)) + footer .has-footer-padding {
   @apply !pt-0;
 }
 
-h1,
+h1
+{
+  @apply font-secondary text-dark leading-tight font-semibold tracking-wide break-words;
+
+  br {
+    @apply max-md:hidden;
+  }
+}
+
 h2,
 h3,
 h4,
 h5,
 h6 {
-  @apply font-secondary text-dark leading-tight font-semibold tracking-wide break-words;
+  @apply font-primary text-dark leading-tight font-semibold tracking-wide break-words;
 
   br {
     @apply max-md:hidden;

@@ -88,7 +88,7 @@
   @apply prose-h4:text-h4-sm;
   @apply prose-h5:text-h5-sm;
   @apply prose-h6:text-h6-sm;
-  @apply prose-strong:text-black prose-strong:text-sm prose-strong:font-medium prose-strong:font-secondary;
+  @apply prose-strong:text-black prose-strong:font-medium;
   @apply prose-a:underline prose-a:transition prose-a:duration-300 prose-a:text-primary hover:prose-a:text-primary/80 prose-a:font-normal;
   @apply prose-p:text-text-default prose-p:mt-4 prose-p:mb-3;
 
@@ -368,22 +368,23 @@ footer {
   }
 
   h2 {
-    font-size: 2.8em;
-  }
-
-  h3 {
     font-size: 2.2em;
   }
 
-  h4 {
+  h3 {
     font-size: 1.6em;
   }
 
-  h5 {
+  h4 {
     font-size: 1em;
   }
 
+  h5 {
+    font-size: 0.7em;
+  }
+
   h6 {
+    @apply font-secondary;
     font-size: 0.7em;
   }
 

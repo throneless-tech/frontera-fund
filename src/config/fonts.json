@@ -13,7 +13,7 @@
       "preload": false,
       "provider": "google-fonts",
       "display": "swap",
-      "cssVariable": "font-primary",
+      "cssVariable": "font-roboto",
       "fallback": "sans-serif",
       "locallyHosted": true,
       "__comment": "set locallyHosted: true if you want to download google fonts and hosted them locally automatically"
@@ -68,7 +68,7 @@
       ],
       "preload": false,
       "display": "swap",
-      "cssVariable": "font-poppins",
+      "cssVariable": "font-primary",
       "provider": "google-fonts",
       "fallback": "sans-serif",
       "locallyHosted": true,
