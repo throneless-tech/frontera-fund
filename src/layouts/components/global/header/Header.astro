@@ -61,7 +61,7 @@ const {
         config.settings.multilingual.enable && !isCategoryFilteredPage && (
           <div class="ms-auto me-4 flex lg:hidden">
             <LanguageSwitcher
-              appearance={hasDarkBackground ? "light" : "dark"}
+              appearance={"dark"}
             />
           </div>
         )
@@ -73,7 +73,7 @@ const {
           <div class="hidden gap-3.5 max-lg:ms-auto max-lg:me-4 lg:flex lg:items-center">
             {config.settings.multilingual.enable && !isCategoryFilteredPage && (
               <LanguageSwitcher
-                appearance={!hasDarkBackground ? "light" : "dark"}
+                appearance={"dark"}
               />
             )}
             {navigationButton.enable && (
@@ -123,7 +123,7 @@ const {
         id="offcanvas-main"
         direction="right"
         size="md">
-        <HeaderOffcanvasContent offcanvas={"offcanvas-main"} />
+        <HeaderOffcanvasContent items={items} offcanvas={"offcanvas-main"} />
       </Offcanvas>
     )
   }

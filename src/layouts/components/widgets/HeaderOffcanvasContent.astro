@@ -18,7 +18,7 @@ const {
 
 const t = await useTranslations(Astro.currentLocale as string);
 
-const { offcanvas } = Astro.props;
+const { items, offcanvas } = Astro.props;
 
 if (!enable) {
   return null;
@@ -49,8 +49,8 @@ if (!enable) {
       )
     }
   </div>
-  <div class="border-y py-10 lg:hidden">
-    <Navbar isMobile={true} />
+  <div class="border-y max-lg:pt-2 max-lg:pb-4 py-10 lg:hidden">
+    <Navbar isMobile={true} items={items} />
   </div>
 
   <div

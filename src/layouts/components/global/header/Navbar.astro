@@ -19,11 +19,15 @@ const { navigationButton } = config.settings;
   id="nav-menu"
   class:list={["navbar", isMobile && "navbar-mobile"]}
   role="menu">
-  {items?.map((item: object) => <NavMenuItem isMobile={isMobile} menu={item} />)}
+  {
+    items?.map((item: object) => (
+      <NavMenuItem isMobile={isMobile} menu={item} />
+    ))
+  }
   {/* Navigation Button For Small Devices */}
   {
     navigationButton.enable && (
-      <li class="max-lg:pt-2 lg:hidden" role="menuitem">
+      <li class="max-lg:pt-8 lg:hidden" role="menuitem">
         <CustomButton
           hoverEffect="creative-fill"
           class="btn-accent effect-color-dark"
