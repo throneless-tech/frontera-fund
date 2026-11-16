@@ -36,6 +36,7 @@ h4,
 h5,
 h6 {
   @apply font-primary text-dark leading-tight font-semibold tracking-wide break-words;
+  font-family: var(--font-primary) !important;
 
   br {
     @apply max-md:hidden;
